@@ -25,7 +25,7 @@ app.use("/*splat",errorController)
 
 app.use(errorHandler);
 
-app.listen(process.env.PORT || 3500, () => {
-	console.clear();
-	console.log("Server Running");
-});
+// app.listen(process.env.PORT || 3500, () => {
+// 	console.clear();
+// 	console.log("Server Running");
+// });
