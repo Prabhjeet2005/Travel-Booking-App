@@ -21,7 +21,7 @@ app.use("/api/categories", categoryRouter);
 app.use("/api/user", userRouter);
 app.use("/api/wishlist", wishlistRouter);
 app.use("/api/dataImport", dataImportRouter);
-app.use("/*splat",errorController)
+app.use("/api/*splat",errorController)
 
 app.use(errorHandler);
 
@@ -29,3 +29,5 @@ app.use(errorHandler);
 // 	console.clear();
 // 	console.log("Server Running");
 // });
+
+module.exports = app;
