@@ -1,0 +1,55 @@
+/* .navbars {
+  background-color: orange;
+  font-size: x-large;
+  padding: 5px 10px 5px 10px;
+  text-align: center;
+
+	.flexRowView {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.outer {
+		display: flex;
+		justify-content: space-between;
+    align-content: center;
+		text-align: center;
+	}
+  .searches{
+    gap: 5px;
+    display: flex;
+    align-content: center;
+    border: 1.5px solid black;
+    padding: 0px 4px 0px 4px;
+    border-radius: 4px;
+  }
+  .searches:hover{
+    cursor: pointer;
+  }
+  .rightBlack{
+    border-right:1px solid black !important;
+    padding-right: 1px;
+  }
+  .profile-options{
+    display: flex;
+    justify-content: space-between;
+    font-size: x-large;
+  }
+  .search-icon{
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+} */
+
+.NavbarColor{
+  background: orange !important;
+  color:black !important;
+  border: none;
+}
+.findButton{
+  display: flex;
+  align-items: center;
+}
+.icon{
+  font-size: xx-large;
+}
