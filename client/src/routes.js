@@ -1,3 +1,7 @@
-// import Hotels from "./Components/HotelCard/Hotels";
+import { Home } from "./Pages";
+import SingleHotelPage from "./Pages/SingleHotel/SingleHotelPage";
 
-// export const routes = [{ path: "hotels", element: <Hotels /> }];
+export const routes = [
+	{ path: "", element: <Home /> },
+	{ path: "hotels/:id", element: <SingleHotelPage /> },
+];

@@ -4,9 +4,15 @@ import "./HotelCard.css";
 import { Rating } from "react-simple-star-rating";
 import useApi from "../../useApi";
 import { ENDPOINTS } from "../../apiUtils";
+import { useNavigate } from "react-router";
 
 export const HotelCard = ({ hotel, wishlist }) => {
-	const { image, address, state, name, rating, price } = hotel;
+	const { _id,image, address, state, name, rating, price } = hotel;
+	const navigate = useNavigate()
+
+	const handleExploreClick = ()=>{
+		navigate(`/hotels/${_id}`)
+	}
 	return (
 		<section className="hotel-card relative">
 			<section>
@@ -33,10 +39,14 @@ export const HotelCard = ({ hotel, wishlist }) => {
 				</span>
 			</section>
 			<section className="hotel-card-desc">{name}</section>
-			<section className="hotel-card-price">
+			<section className="hotel-card-price-explore-container">
+				<section className="hotel-card-price">
 				&#8377;{price}
 				<span className="hotel-card-night">/night</span>{" "}
 			</section>
+			<section onClick={handleExploreClick} className="hotel-card-explore">Explore</section>
+			</section>
+			
 			<section className="hotel-card-heart">
 				<HeartFill />
 			</section>
