@@ -24,7 +24,7 @@ app.use(cookieParser());
 
 app.use("/api/hotels", hotelRouter);
 app.use("/api/categories", categoryRouter);
-app.use("/api/user", userRouter);
+app.use("/api/users", userRouter);
 app.use("/api/wishlist", wishlistRouter);
 app.use("/api/dataImport", dataImportRouter);
 app.use("/api/*splat",errorController)
