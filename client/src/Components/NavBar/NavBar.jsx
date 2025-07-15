@@ -9,20 +9,20 @@ import "./style.css";
 import { Link, useSearchParams } from "react-router";
 import { useIsLoggedIn } from "../../useIsLoggedIn";
 import useApi from "../../useApi";
-import { ENDPOINTS, REQUEST_TYPES } from "../../api/apiUtils";
+import { ENDPOINTS, REQUEST_TYPES } from "../../apiUtils";
 
 export const NavBar = () => {
 	const isLoggedIn = useIsLoggedIn();
 	const [, setSearchParams] = useSearchParams();
 	const { makeRequest: logoutRequest } = useApi(
-		ENDPOINTS.USER.LOGOUT,
+		ENDPOINTS.USERS.LOGOUT,
 		REQUEST_TYPES.POST
 	);
 
 	return (
-		<Navbar expand="md" className="NavbarColor">
+		<Navbar fixed="top" expand="md" className="NavbarColor position">
 			<Container fluid className="d-flex justify-between">
-				<Navbar.Brand className="" href="/">
+				<Navbar.Brand className="navbar-heading" href="/">
 					TravelApp
 				</Navbar.Brand>
 				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -77,4 +77,3 @@ export const NavBar = () => {
 		</Navbar>
 	);
 };
-

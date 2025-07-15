@@ -75,7 +75,7 @@ const hotelDataRaw = {
 		{
 			id: uuid(),
 			name: "Sooty's Hideout",
-			category: "National Parks",
+			category: "Cabins",
 			image:
 				"https://a0.muscache.com/im/pictures/miso/Hosting-614375154474735110/original/7e7f4c4a-c496-4844-bd02-44e276b41718.jpeg?im_w=720",
 			imageArr: [
@@ -116,7 +116,7 @@ const hotelDataRaw = {
 		{
 			id: uuid(),
 			name: "StayVista @ Vista Divine",
-			category: "National Parks",
+			category: "Cabins",
 			image:
 				"https://a0.muscache.com/im/pictures/miso/Hosting-46781700/original/2b25b21b-87d4-48c9-b796-c2cd04af2788.jpeg?im_w=1200",
 			imageArr: [
@@ -157,7 +157,7 @@ const hotelDataRaw = {
 		{
 			id: uuid(),
 			name: "Stone Cottage",
-			category: "National Parks",
+			category: "Tropical",
 			image:
 				"https://a0.muscache.com/im/pictures/miso/Hosting-601816645157829673/original/e4792d54-354c-4187-854a-1d0552ecaa3e.jpeg?im_w=1200",
 			imageArr: [
@@ -198,7 +198,7 @@ const hotelDataRaw = {
 		{
 			id: uuid(),
 			name: "Sun View Mountain",
-			category: "National Parks",
+			category: "A-frames",
 			image:
 				"https://a0.muscache.com/im/pictures/miso/Hosting-20815828/original/f4cfbfab-6113-444b-b1ac-f60e72ea510d.jpeg?im_w=1200",
 			imageArr: [
@@ -241,7 +241,7 @@ const hotelDataRaw = {
 		{
 			id: uuid(),
 			name: "Folktales ; a Boutique Homestay & Artist Retreat#",
-			category: "National Parks",
+			category: "Caves",
 			image:
 				"https://a0.muscache.com/im/pictures/cfdf5973-9fc1-42d3-bde1-a072fdbe1825.jpg?im_w=1200",
 			imageArr: [
@@ -283,7 +283,7 @@ const hotelDataRaw = {
 		{
 			id: uuid(),
 			name: "Free Birds, Charang",
-			category: "National Parks",
+			category: "Island",
 			image:
 				"https://a0.muscache.com/im/pictures/8a460633-914d-423d-92bb-d31e667043e6.jpg?im_w=1200",
 			imageArr: [
@@ -324,7 +324,7 @@ const hotelDataRaw = {
 		{
 			id: uuid(),
 			name: "Corona Safe: Avondale - Beautiful Heritage Home",
-			category: "National Parks",
+			category: "Golfing",
 			image:
 				"https://a0.muscache.com/im/pictures/7ef7f41b-62e2-43c1-b68f-8cd23e954167.jpg?im_w=1200",
 			imageArr: [
@@ -364,7 +364,7 @@ const hotelDataRaw = {
 		{
 			id: uuid(),
 			name: "Camp Footprint - Wilderness Getaway",
-			category: "National Parks",
+			category: "Golfing",
 			image:
 				"https://a0.muscache.com/im/pictures/e1007553-4aff-4139-b913-21070752e414.jpg?im_w=1200",
 			imageArr: [
@@ -406,7 +406,7 @@ const hotelDataRaw = {
 		{
 			id: uuid(),
 			name: "Fernweh - Merakii Hospitality",
-			category: "National Parks",
+			category: "Island",
 			image:
 				"https://a0.muscache.com/im/pictures/11d290f5-5f07-4bd2-9f2c-88d48d1e7161.jpg?im_w=1200",
 			imageArr: [
@@ -446,7 +446,7 @@ const hotelDataRaw = {
 		{
 			id: uuid(),
 			name: "Exclusive Top Floor 2 luxurious adjoining Rooms",
-			category: "National Parks",
+			category: "Design",
 			image:
 				"https://a0.muscache.com/im/pictures/07824a1a-09a9-4a1d-903c-bcd84b9a6b96.jpg?im_w=720",
 			imageArr: [
@@ -486,7 +486,7 @@ const hotelDataRaw = {
 		{
 			id: uuid(),
 			name: "Taurus The Truck - Spiti Valley",
-			category: "National Parks",
+			category: "Campervans",
 			image:
 				"https://a0.muscache.com/im/pictures/0a233759-c896-420e-878e-dced5fcebeb8.jpg?im_w=1200",
 			imageArr: [
@@ -566,7 +566,7 @@ const hotelDataRaw = {
 		{
 			id: uuid(),
 			name: "StayVista at Maharaja Suite @ The Kang Estate",
-			category: "National Parks",
+			category: "Tiny Homes",
 			image:
 				"https://a0.muscache.com/im/pictures/miso/Hosting-40075274/original/86a517b4-06a5-4073-a862-c294f5e83dc4.jpeg?im_w=1200",
 			imageArr: [
@@ -607,7 +607,7 @@ const hotelDataRaw = {
 		{
 			id: uuid(),
 			name: "Munnar Retreat- Ideal for groups",
-			category: "National Parks",
+			category: "Tiny Homes",
 			image:
 				"https://a0.muscache.com/im/pictures/b0a8bec1-6a89-449d-825f-87b15f8453d5.jpg?im_w=1200",
 			imageArr: [

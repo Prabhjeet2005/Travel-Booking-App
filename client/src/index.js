@@ -6,6 +6,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import UserContextProvider from "./context/UserContextProvider";
 import { routes } from "./routes";
 import "bootstrap/dist/css/bootstrap.min.css";
+import CategoryContextProvider from "./context/CategoryContextProvider";
 
 const router = createBrowserRouter([
   {
@@ -18,8 +19,10 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<UserContextProvider>
-		<RouterProvider router={router}>
-			<App />
-		</RouterProvider>
+		<CategoryContextProvider>
+			<RouterProvider router={router}>
+				<App />
+			</RouterProvider>
+		</CategoryContextProvider>
 	</UserContextProvider>
 );

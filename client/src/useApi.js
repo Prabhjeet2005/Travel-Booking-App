@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { axiosInstance, ENDPOINTS, REQUEST_TYPES } from "./api/apiUtils";
+import { axiosInstance, ENDPOINTS, REQUEST_TYPES } from "./apiUtils";
 import { UserContext } from "./context/UserContextProvider";
 
 const useApi = (url, type = REQUEST_TYPES.GET) => {
@@ -14,10 +14,10 @@ const useApi = (url, type = REQUEST_TYPES.GET) => {
 		setIsLoading,
 	} = useContext(UserContext);
 
-// useEffect(() => {
-// 	console.log("Hotels from context:", userData);
-//   console.log("isLoading: ",isLoading)
-// }, [userData,isLoading]);
+	// useEffect(() => {
+	// 	console.log("Hotels from context:", userData);
+	//   console.log("isLoading: ",isLoading)
+	// }, [userData,isLoading]);
 
 	const makeRequest = async (payload) => {
 		try {
@@ -29,9 +29,10 @@ const useApi = (url, type = REQUEST_TYPES.GET) => {
 			if (data) {
 				setUserData(data);
 			}
-			if (url === ENDPOINTS.USER.LOGOUT) {
+			if (url === ENDPOINTS.USERS.LOGOUT) {
 				setUserData(null);
 			}
+			return data;
 		} catch (error) {
 			setSuccess(false);
 			if (error?.response?.data?.message) {
@@ -39,6 +40,7 @@ const useApi = (url, type = REQUEST_TYPES.GET) => {
 			}
 		} finally {
 			setIsLoading(false);
+
 		}
 	};
 	return { makeRequest, isLoading, success, message, userData };

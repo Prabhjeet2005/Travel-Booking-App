@@ -41,15 +41,25 @@
   }
 } */
 
-.NavbarColor{
-  background: orange !important;
-  color:black !important;
-  border: none;
+.navbar-heading {
+	font-weight: 900 !important;
+	font-size: x-large !important;
+	color: white !important;
+  padding-left: 30px;
 }
-.findButton{
-  display: flex;
-  align-items: center;
+
+.NavbarColor {
+	background: orange !important;
+	color: black !important;
+	border: none;
 }
-.icon{
-  font-size: xx-large;
+.findButton {
+	display: flex;
+	align-items: center;
+}
+.icon {
+	font-size: xx-large;
+}
+.position {
+	position: fixed;
 }

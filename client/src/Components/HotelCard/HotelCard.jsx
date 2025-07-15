@@ -1,15 +1,12 @@
 import React from "react";
-import { Heart, HeartFill } from "react-bootstrap-icons";
+import { GeoAlt, Heart, HeartFill } from "react-bootstrap-icons";
 import "./HotelCard.css";
 import { Rating } from "react-simple-star-rating";
-import useApi from "../../../useApi";
-import { ENDPOINTS } from "../../../api/apiUtils";
+import useApi from "../../useApi";
+import { ENDPOINTS } from "../../apiUtils";
 
-export const HotelCard = ({ hotel,wishlist }) => {
-	const { image, address, country, name, rating, price } = hotel;
-	console.log(wishlist);
-
-	console.log();
+export const HotelCard = ({ hotel, wishlist }) => {
+	const { image, address, state, name, rating, price } = hotel;
 	return (
 		<section className="hotel-card relative">
 			<section>
@@ -22,7 +19,11 @@ export const HotelCard = ({ hotel,wishlist }) => {
 			</section>
 			<section className="hotel-card-title-container">
 				<span className="hotel-card-title">
-					{address},{country}
+					<span>{address}</span>
+					<section className="hotel-location">
+						<GeoAlt />
+						{state}
+					</section>
 				</span>
 				<span className="hotel-card-rating">
 					<span>
