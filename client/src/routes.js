@@ -3,5 +3,8 @@ import SingleHotelPage from "./Pages/SingleHotel/SingleHotelPage";
 
 export const routes = [
 	{ path: "", element: <Home /> },
-	{ path: "hotels/:id", element: <SingleHotelPage /> },
+	{
+		path: "hotels/:name/:address/:id", // Just For Navigation No Backend Involved Here
+		element: <SingleHotelPage />,
+	},
 ];

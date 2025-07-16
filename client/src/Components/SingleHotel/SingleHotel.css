@@ -1,0 +1,40 @@
+.single-hotel-title {
+	font-size: xx-large;
+	font-weight: 200;
+}
+.location-pin {
+	font-size: x-large;
+}
+
+.single-hotel-img-container {
+	display: flex;
+	justify-content: space-between;
+}
+
+.single-hotel-main-img {
+	width: 50vw;
+	height: 50vh;
+	background-size: contain;
+}
+.main-img {
+	height: 50vh;
+	width: 50vw;
+	background-size: contain;
+}
+
+.single-hotel-four-image-container {
+	display: flex;
+	flex-wrap: wrap;
+
+	background-size: contain;
+
+	height: 50vh;
+	width: 50vw;
+	gap: 2px;
+	justify-content: center;
+}
+
+.single-hotel-four-image {
+	width: 20vw;
+	background-size: contain;
+}

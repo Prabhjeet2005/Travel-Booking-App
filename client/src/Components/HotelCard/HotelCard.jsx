@@ -11,7 +11,9 @@ export const HotelCard = ({ hotel, wishlist }) => {
 	const navigate = useNavigate()
 
 	const handleExploreClick = ()=>{
-		navigate(`/hotels/${_id}`)
+		// Only frontend So it works
+		// Just For Navigation No Backend Involved Here
+		navigate(`hotels/${name}/${address}-${state}/${_id}`);
 	}
 	return (
 		<section className="hotel-card relative">

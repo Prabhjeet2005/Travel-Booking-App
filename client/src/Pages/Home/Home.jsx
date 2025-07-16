@@ -20,10 +20,9 @@ export const Home = () => {
 
 	useEffect(() => {
 		(async () => {
-      console.log("🚀 ~ hotelCategory:", hotelCategory)
       const hotelData = await axios.get(
-				`http://localhost:3500/api/hotels/displayHotels?category=${hotelCategory}`
-      );
+				`${process.env.REACT_APP_SERVER_URL}hotels/displayHotels?category=${hotelCategory}`
+			);
 			// const hotelData = await hotelRequest();
 			setHotels(hotelData.data.data || []);
 		})();
