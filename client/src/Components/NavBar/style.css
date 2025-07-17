@@ -46,6 +46,12 @@
 	font-size: x-large !important;
 	color: white !important;
   padding-left: 30px;
+  display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.airplane{
+  font-size: smaller;
 }
 
 .NavbarColor {

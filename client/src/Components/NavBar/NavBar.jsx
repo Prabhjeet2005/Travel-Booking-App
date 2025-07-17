@@ -4,7 +4,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { Button, Col, Form, Row } from "react-bootstrap";
-import { Search, Person, MenuApp, List } from "react-bootstrap-icons";
+import { Search, Person, MenuApp, List, SendFill } from "react-bootstrap-icons";
 import "./style.css";
 import { Link, useSearchParams } from "react-router";
 import { useIsLoggedIn } from "../../useIsLoggedIn";
@@ -23,7 +23,7 @@ export const NavBar = () => {
 		<Navbar fixed="top" expand="md" className="NavbarColor position">
 			<Container fluid className="d-flex justify-between">
 				<Navbar.Brand className="navbar-heading" href="/">
-					TravelApp
+					Travel <SendFill className="airplane" />
 				</Navbar.Brand>
 				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 				<Navbar.Collapse id="responsive-navbar-nav">
