@@ -2,8 +2,6 @@ import React from "react";
 import { GeoAlt, Heart, HeartFill } from "react-bootstrap-icons";
 import "./HotelCard.css";
 import { Rating } from "react-simple-star-rating";
-import useApi from "../../useApi";
-import { ENDPOINTS } from "../../apiUtils";
 import { useNavigate } from "react-router";
 
 export const HotelCard = ({ hotel, wishlist }) => {

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./SingleHotel.css";
+import "./SingleHotelComponent.css";
 import { GeoAlt } from "react-bootstrap-icons";
 
 const SingleHotelImage = ({ singleHotel }) => {

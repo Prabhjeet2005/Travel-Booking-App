@@ -1,5 +1,21 @@
-.main-page-container{
-  margin-top: 80px !important;
-  padding-left: 32px !important;  
-  padding-right: 32px !important;  
+.main-page-container {
+	margin-top: 80px !important;
+	padding-left: 32px !important;
+	padding-right: 32px !important;
+}
+
+.hotel-description-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 64px;
+	padding-right: 32px;
+	margin-top: 16px;
+	margin-bottom: 32px;
+}
+@media (min-width: 766px) {
+	.hotel-description-container {
+		flex-direction: row;
+		gap: 16px;
+	}
 }

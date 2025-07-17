@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import "../style.css"
+import "./CategoryCard.css";
 import { CategoryContext } from '../../context/CategoryContextProvider';
 
 const CategoryCard = ({ category }) => {

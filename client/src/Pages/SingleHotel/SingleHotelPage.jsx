@@ -4,6 +4,8 @@ import axios from "axios";
 import { NavBar } from "../../Components/index";
 import SingleHotelImage from "../../Components/SingleHotel/SingleHotelImage";
 import "./SingleHotelPage.css";
+import SingleHotelDescription from "../../Components/SingleHotel/SingleHotelDescription";
+import SingleHotelPrice from "../../Components/SingleHotel/SingleHotelPrice";
 
 const SingleHotelPage = () => {
 	const params = useParams();
@@ -28,10 +30,10 @@ const SingleHotelPage = () => {
 			<NavBar />
 			<section className="main-page-container">
 				<SingleHotelImage singleHotel={singleHotel} />
-        <section className="hotel-description-container">
-          <section></section>
-          <section></section>
-        </section>
+				<section className="hotel-description-container">
+					<SingleHotelDescription singleHotel={singleHotel} />
+					<SingleHotelPrice singleHotel={singleHotel} />
+				</section>
 			</section>
 		</>
 	);

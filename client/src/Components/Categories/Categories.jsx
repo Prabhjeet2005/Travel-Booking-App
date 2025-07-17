@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import useApi from "../../useApi";
 import { ENDPOINTS } from "../../apiUtils";
 import CategoryCard from "./CategoryCard";
-import "../style.css";
+import "./CategoryCard.css";
 import { ArrowLeftCircle, ArrowRightCircle } from "react-bootstrap-icons";
 import { CategoryContext } from "../../context/CategoryContextProvider";
 

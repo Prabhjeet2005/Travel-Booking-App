@@ -1,5 +1,6 @@
 import React from "react";
 import { ArrowReturnRight, Check2Circle, ClipboardPlus, ColumnsGap, DashLg, ListCheck } from "react-bootstrap-icons";
+import "./SingleHotelComponent.css"
 
 const SingleHotelDescription = ({ singleHotel }) => {
 	const {
