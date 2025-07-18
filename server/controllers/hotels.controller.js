@@ -26,4 +26,18 @@ const findHotelByIDController = async (req, res, next) => {
 	}
 };
 
-module.exports = { displayHotelController, findHotelByIDController };
+const findHotelByAddressController = async(req,res,next)=>{
+	try {
+		const address = req.query.address || "";
+		const hotels = await HotelModel.findHotelByAddress(address);
+		res.status(200).send(responseCreator("Hotels Found",hotels))
+	} catch (error) {
+		next(error);
+	}
+}
+
+module.exports = {
+	displayHotelController,
+	findHotelByIDController,
+	findHotelByAddressController,
+};

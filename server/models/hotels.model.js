@@ -53,6 +53,17 @@ hotelSchema.statics.findHotelByID = async (id) => {
 	return hotel;
 };
 
+hotelSchema.statics.findHotelByAddress = async (address) => {
+	if(address === ""){
+		return await HotelModel.find({})
+	}
+	const hotels = await HotelModel.find({ address });
+	if (!hotels) {
+		errorCreator("No Hotel Found", 400);
+	}
+	return hotels;
+};
+
 // saves in MongoDB as hotels
 const HotelModel = model("hotel", hotelSchema);
 
