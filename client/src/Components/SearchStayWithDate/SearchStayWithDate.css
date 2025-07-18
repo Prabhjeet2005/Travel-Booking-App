@@ -11,7 +11,7 @@
 }
 
 .search-stay-container {
-  position: relative;
+	position: relative;
 	display: flex;
 	gap: 20px;
 	background-color: white;
@@ -44,25 +44,59 @@
 	background-color: orange;
 	color: white;
 	border-radius: 8px;
-  cursor: pointer;
-  /* transition: transform 0.3s ease; */
+	cursor: pointer;
+	/* transition: transform 0.3s ease; */
 }
 /* .search-button:hover,.cross-icon:hover{
   transform: scale(1.1)
 } */
 
-.cross-icon{
-  position: absolute;
-      left: 5px;
-    top: -4px;
-    font-size: x-large;
-    color: gray;
-    cursor: pointer;
+.cross-icon {
+	position: absolute;
+	left: 5px;
+	top: -4px;
+	font-size: x-large;
+	color: gray;
+	cursor: pointer;
 }
-.hover-tranform{
-  cursor: pointer;
-  transition: transform 0.3s ease;
+
+.destination-options {
+	position: absolute;
+	top: 70px;
+	max-height: 20vh;
+	background-color: white;
+	z-index: 6;
+	min-width: 250px;
+	overflow-y: auto;
+	font-size: large;
+	font-weight: 200;
+	border-radius: 8px;
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
+	overflow-x: hidden;
 }
-.hover-tranform:hover{
-  transform: scale(1.1);
+.destination-options-item {
+	cursor: pointer;
+	/* background-color: lightgray; */
+	padding: 0 12px;
+	transition: transform 0.3s ease;
+	min-width: 200px;
+}
+.destination-options-item:hover {
+	background-color: orange;
+	color: white;
+	transform: scale(1.04);
+}
+.destination-options-item:focus {
+	background-color: orange;
+	color: white;
+}
+
+.hover-tranform {
+	cursor: pointer;
+	transition: transform 0.3s ease;
+}
+.hover-tranform:hover {
+	transform: scale(1.1);
 }

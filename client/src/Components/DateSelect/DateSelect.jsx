@@ -12,13 +12,18 @@ const DateSelect = ({checkInType}) => {
       payload: date
     })
   }
+	const handleDateFocus = () => {
+		dateDispatch({
+			type: "HIDE_DESTINATION_DROPDOWN",
+		});
+	}
   return (
 		<div>
 			<DatePicker
 				className="search-stay-input"
 				selected={checkInType === "in" ? checkInDate : checkOutDate}
 				onChange={(date) => handleDateChange(date)}
-				// onFocus={handleDateFocus}
+				onFocus={handleDateFocus}
 				dateFormat="dd/MM/yyyy"
 				placeholderText="Add Dates"
 				minDate={checkInType==="in"? new Date():checkInDate}

@@ -41,7 +41,7 @@ export const Home = () => {
 				{hotels && hotels.length > 0 ? (
 					hotels.map((hotel) => <HotelCard key={hotel._id} hotel={hotel} />)
 				) : (
-					<section>No Hotels For Category "{hotelCategory}" Found</section>
+					<section>No Hotels Found In {hotelCategory}  </section>
 				)}
 			</section>
 			{isSearchModalOpen && <SearchStayWithDate />}

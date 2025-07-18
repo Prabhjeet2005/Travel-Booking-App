@@ -19,6 +19,7 @@
 		padding-right: 5px;
 		justify-content: space-between;
 		overflow-y: hidden;
+		padding-left: 8px;
 	}
 	.category-item {
 		cursor: pointer;

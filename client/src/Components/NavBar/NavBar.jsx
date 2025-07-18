@@ -43,7 +43,7 @@ export const NavBar = () => {
 				</Navbar.Brand>
 				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 				<Navbar.Collapse id="responsive-navbar-nav">
-					<Nav className="ms-auto">
+					<Nav className="ms-auto navbar-space">
 						<ButtonGroup
 							aria-label="Basic example"
 							className="button-container"
