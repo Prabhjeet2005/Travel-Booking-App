@@ -15,7 +15,8 @@ const SingleHotelImage = ({ singleHotel }) => {
 	return (
 		<>
 			<section className="single-hotel-title">
-				{name}, <GeoAlt className="location-pin" />{state}
+				{name}, <GeoAlt className="location-pin" />
+				{state}
 			</section>
 			<section className="single-hotel-img-container">
 				<section className="single-hotel-main-img">
@@ -30,7 +31,11 @@ const SingleHotelImage = ({ singleHotel }) => {
 								className="single-hotel-four-image"
 								key={item}
 								src={item}
-								alt={"Other Image"}
+								onError={(e) => {
+									e.currentTarget.onerror = null; // prevent infinite loop
+									e.currentTarget.src = "/images/download.jpeg";
+								}}
+								alt="Hotel Image"
 							/>
 						))}
 				</section>

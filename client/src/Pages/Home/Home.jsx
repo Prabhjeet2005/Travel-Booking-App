@@ -6,6 +6,8 @@ import axios from "axios";
 import { Categories, HotelCard, NavBar } from "../../Components/index";
 import useApi from "../../useApi";
 import { CategoryContext } from "../../context/CategoryContextProvider";
+import SearchStayWithDate from "../../Components/SearchStayWithDate/SearchStayWithDate";
+import { DateContext } from "../../context/DateContext";
 
 export const Home = () => {
 	const [hotels, setHotels] = useState([]);
@@ -15,6 +17,7 @@ export const Home = () => {
 		ENDPOINTS.HOTEL.DISPLAY,
 		REQUEST_TYPES.GET
 	);
+	const {isSearchModalOpen} = useContext(DateContext);
 
 	const { userData, isLoading, message, success } = useContext(UserContext);
 
@@ -28,7 +31,6 @@ export const Home = () => {
 		})();
 
 	}, [hotelCategory]);
-	console.log("🚀 ~ Home ~ hotelCategory:", hotelCategory)
 
 
 	return (
@@ -36,10 +38,13 @@ export const Home = () => {
 			<NavBar />
 			<Categories />
 			<section className="hotel-card-container">
-				{hotels && hotels.length >0 ? hotels.map((hotel) => (
-					<HotelCard key={hotel._id}  hotel={hotel} />
-				)):<section>No Hotels For Category "{hotelCategory}" Found</section>}
+				{hotels && hotels.length > 0 ? (
+					hotels.map((hotel) => <HotelCard key={hotel._id} hotel={hotel} />)
+				) : (
+					<section>No Hotels For Category "{hotelCategory}" Found</section>
+				)}
 			</section>
+			{isSearchModalOpen && <SearchStayWithDate />}
 		</>
 	);
 };

@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { Button, Col, Form, Row } from "react-bootstrap";
-import { Search, Person, MenuApp, List, SendFill } from "react-bootstrap-icons";
+import { Button, ButtonGroup, Col, Form, Row } from "react-bootstrap";
+import {
+	Search,
+	Person,
+	MenuApp,
+	List,
+	SendFill,
+	SignpostSplit,
+	Calendar4Week,
+	PersonAdd,
+} from "react-bootstrap-icons";
 import "./style.css";
 import { Link, useSearchParams } from "react-router";
 import { useIsLoggedIn } from "../../useIsLoggedIn";
 import useApi from "../../useApi";
 import { ENDPOINTS, REQUEST_TYPES } from "../../apiUtils";
+import { DateContext } from "../../context/DateContext";
 
 export const NavBar = () => {
 	const isLoggedIn = useIsLoggedIn();
@@ -18,6 +28,12 @@ export const NavBar = () => {
 		ENDPOINTS.USERS.LOGOUT,
 		REQUEST_TYPES.POST
 	);
+	const { dateDispatch } = useContext(DateContext);
+	const searchStayOpenHandler = () => {
+		dateDispatch({
+			type: "OPEN_SEARCH_MODAL",
+		});
+	};
 
 	return (
 		<Navbar fixed="top" expand="md" className="NavbarColor position">
@@ -28,23 +44,27 @@ export const NavBar = () => {
 				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 				<Navbar.Collapse id="responsive-navbar-nav">
 					<Nav className="ms-auto">
-						<NavDropdown title="Filter" id="basic-nav-dropdown navDropDown">
-							<NavDropdown.Item href="#action/3.1">Place</NavDropdown.Item>
-							<NavDropdown.Item href="#action/3.1">Week</NavDropdown.Item>
-							<NavDropdown.Item href="#action/3.1">Guests</NavDropdown.Item>
-							<NavDropdown.Item href="#action/3.1" className="">
-								<Button className="findButton btn-danger NavbarColor">
-									Apply Filter
-								</Button>
-							</NavDropdown.Item>
-						</NavDropdown>
+						<ButtonGroup
+							aria-label="Basic example"
+							className="button-container"
+							onClick={searchStayOpenHandler}>
+							<Button variant="secondary" className="button-item">
+								<SignpostSplit />{" "}
+							</Button>
+							<Button variant="secondary" className="button-item">
+								<Calendar4Week />{" "}
+							</Button>
+							<Button variant="secondary" className="button-item">
+								<PersonAdd />
+							</Button>
+						</ButtonGroup>
 						<Form inline>
 							<Row className="d-flex">
 								<Col xs="auto">
 									<Form.Control
 										type="text"
 										placeholder="Search"
-										className=" outline-none"
+										className=" searchBar"
 										onChange={(e) =>
 											setSearchParams({ search: e.target.value })
 										}

@@ -45,13 +45,13 @@
 	font-weight: 900 !important;
 	font-size: x-large !important;
 	color: white !important;
-  padding-left: 30px;
-  display: flex;
-    align-items: center;
-    gap: 4px;
+	padding-left: 30px;
+	display: flex;
+	align-items: center;
+	gap: 4px;
 }
-.airplane{
-  font-size: smaller;
+.airplane {
+	font-size: smaller;
 }
 
 .NavbarColor {
@@ -68,4 +68,24 @@
 }
 .position {
 	position: fixed;
+}
+.button-container {
+	margin-right: 80px !important;
+	border: none !important;
+	cursor: pointer;
+	transition: transform 0.3s ease;
+}
+.button-container:hover {
+	transform: scale(1.05);
+}
+.button-item {
+	background-color: white !important;
+	color: black !important;
+	border: none !important;
+}
+
+.searchBar:focus{
+  outline: none;
+  box-shadow: none !important;
+  border: none !important;
 }

@@ -1,0 +1,7 @@
+.search-stay-input{
+      border: 1px solid grey !important;
+    outline: none !important;
+    border-radius: 4px !important;
+    color: gray !important;
+    text-align: center;
+}

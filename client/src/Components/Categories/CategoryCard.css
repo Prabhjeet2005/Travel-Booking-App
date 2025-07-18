@@ -18,6 +18,7 @@
 		font-size: small;
 		padding-right: 5px;
 		justify-content: space-between;
+		overflow-y: hidden;
 	}
 	.category-item {
 		cursor: pointer;

@@ -7,6 +7,7 @@ import UserContextProvider from "./context/UserContextProvider";
 import { routes } from "./routes";
 import "bootstrap/dist/css/bootstrap.min.css";
 import CategoryContextProvider from "./context/CategoryContextProvider";
+import DateContextProvider from "./context/DateContext";
 
 const router = createBrowserRouter([
   {
@@ -20,9 +21,11 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<UserContextProvider>
 		<CategoryContextProvider>
-			<RouterProvider router={router}>
-				<App />
-			</RouterProvider>
+			<DateContextProvider>
+				<RouterProvider router={router}>
+					<App />
+				</RouterProvider>
+			</DateContextProvider>
 		</CategoryContextProvider>
 	</UserContextProvider>
 );
