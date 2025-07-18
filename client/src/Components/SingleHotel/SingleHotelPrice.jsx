@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Person } from "react-bootstrap-icons";
 import { Rating } from "react-simple-star-rating";
 import "./SingleHotelComponent.css";
+import DateSelect from "../DateSelect/DateSelect";
+import { DateContext } from "../../context/DateContext";
 
 const SingleHotelPrice = ({ singleHotel }) => {
 	const { price, rating } = singleHotel;
+	const {guests,dateDispatch} = useContext(DateContext)
+	const handleGuestChange = (e)=>{
+		dateDispatch({
+			type: "GUESTS",
+			payload: e.target.value,
+		});
+	}
 	return (
 		<section className="single-hotel-price-book-container">
 			<section className="hotel-title-container">
@@ -24,13 +33,17 @@ const SingleHotelPrice = ({ singleHotel }) => {
 				</section>
 			</section>
 			<section className="check-container">
-				<section>Check-in</section>
-				<section>Check-out</section>
+				<section>
+					Check-in <DateSelect checkInType={"in"} />{" "}
+				</section>
+				<section>
+					Check-out <DateSelect checkInType={"out"} />
+				</section>
 			</section>
 			<section className="guest-container">
-				<section>GUESTS</section>
+				<section>{guests >1 ? <span>GUESTS</span>:<span>GUEST</span>} </section>
 				<section className="guest-number">
-					<Person /> 2
+					<span className="person-icon"><Person /></span>  <input className="guest-input" type="Number" onChange={(e)=>handleGuestChange(e)} min={0} value={guests} placeholder="Enter Guests" />
 				</section>
 			</section>
 			<section>

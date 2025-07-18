@@ -44,7 +44,6 @@ export const Home = () => {
 					<section>No Hotels Found In {hotelCategory}  </section>
 				)}
 			</section>
-			{isSearchModalOpen && <SearchStayWithDate />}
 		</>
 	);
 };

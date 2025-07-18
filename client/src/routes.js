@@ -1,10 +1,12 @@
 import { Home } from "./Pages";
+import SearchResult from "./Pages/SearchResults/SearchResult";
 import SingleHotelPage from "./Pages/SingleHotel/SingleHotelPage";
 
 export const routes = [
 	{ path: "", element: <Home /> },
 	{
-		path: "hotels/:name/:address/:id", // Just For Navigation No Backend Involved Here
+		path: "/hotels/:name/:address/:id", // Just For Navigation No Backend Involved Here
 		element: <SingleHotelPage />,
 	},
+	{ path: "/hotels/searchResults/:address", element: <SearchResult /> },
 ];

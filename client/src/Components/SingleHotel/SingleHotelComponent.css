@@ -31,8 +31,8 @@
 
 .single-hotel-four-image {
 	background-size: contain;
-	    height: 50%;
-    width: 50%;
+	height: 50%;
+	width: 50%;
 }
 @media (min-width: 850px) {
 	.single-hotel-img-container {
@@ -42,13 +42,13 @@
 		width: 20vw;
 		margin: 0;
 	} */
-	.main-img{
-	height: 50vh;
-	width: 50vw;
-	background-size: contain;
+	.main-img {
+		height: 50vh;
+		width: 50vw;
+		background-size: contain;
 	}
-	.single-hotel-main-img{
-	height: 50vh;
+	.single-hotel-main-img {
+		height: 50vh;
 	}
 }
 
@@ -110,10 +110,6 @@
 .single-hotel-cancellation {
 }
 
-
-
-
-
 /* SingleHotelPrice */
 
 .single-hotel-price-book-container {
@@ -123,8 +119,9 @@
 	gap: 20px;
 }
 
-@media(min-width:850px){
-	.single-hotel-price-book-container,.single-hotel-container{
+@media (min-width: 850px) {
+	.single-hotel-price-book-container,
+	.single-hotel-container {
 		width: 40%;
 	}
 }
@@ -148,7 +145,7 @@
 	align-items: flex-start;
 	width: 100%;
 	font-size: xx-large;
-	
+
 	align-items: center;
 }
 
@@ -210,4 +207,19 @@
 .price-total {
 	border-top: 1px #69696966 solid;
 	padding-top: 4px;
+}
+
+.guest-number {
+	position: relative;
+}
+.person-icon {
+	position: absolute;
+	left: 5px;
+	top: 0px;
+}
+.guest-input {
+	padding-left: 20px;
+	outline: none;
+	border: 0.5px solid darkgray;
+	border-radius: 4px;
 }

@@ -4,14 +4,14 @@ import "./HotelCard.css";
 import { Rating } from "react-simple-star-rating";
 import { useNavigate } from "react-router";
 
-export const HotelCard = ({ hotel, wishlist }) => {
+export const HotelCard = ({ hotel, wishlist={} }) => {
 	const { _id,image, address, state, name, rating, price } = hotel;
 	const navigate = useNavigate()
 
 	const handleExploreClick = ()=>{
 		// Only frontend So it works
 		// Just For Navigation No Backend Involved Here
-		navigate(`hotels/${name}/${address}-${state}/${_id}`);
+		navigate(`/hotels/${name}/${address}-${state}/${_id}`);
 	}
 	return (
 		<section className="hotel-card relative">

@@ -20,6 +20,7 @@ import { useIsLoggedIn } from "../../useIsLoggedIn";
 import useApi from "../../useApi";
 import { ENDPOINTS, REQUEST_TYPES } from "../../apiUtils";
 import { DateContext } from "../../context/DateContext";
+import SearchStayWithDate from "../SearchStayWithDate/SearchStayWithDate";
 
 export const NavBar = () => {
 	const isLoggedIn = useIsLoggedIn();
@@ -28,12 +29,15 @@ export const NavBar = () => {
 		ENDPOINTS.USERS.LOGOUT,
 		REQUEST_TYPES.POST
 	);
-	const { dateDispatch } = useContext(DateContext);
+	const {isSearchModalOpen, dateDispatch } = useContext(DateContext);
 	const searchStayOpenHandler = () => {
 		dateDispatch({
 			type: "OPEN_SEARCH_MODAL",
 		});
 	};
+
+	const { destination, guests, checkInDate, checkOutDate } =
+		useContext(DateContext);
 
 	return (
 		<Navbar fixed="top" expand="md" className="NavbarColor position">
@@ -49,13 +53,23 @@ export const NavBar = () => {
 							className="button-container"
 							onClick={searchStayOpenHandler}>
 							<Button variant="secondary" className="button-item">
-								<SignpostSplit />{" "}
+								<SignpostSplit /> {destination || "Destination"}
 							</Button>
 							<Button variant="secondary" className="button-item">
-								<Calendar4Week />{" "}
+								<Calendar4Week />
+								{checkInDate && checkOutDate
+									? `${checkInDate.toLocaleDateString("en-US", {
+											day: "numeric",
+											month: "short",
+									  })} - ${checkOutDate.toLocaleDateString("en-US", {
+											day: "numeric",
+											month: "short",
+									  })}`
+									: "Days"}{" "}
 							</Button>
 							<Button variant="secondary" className="button-item">
 								<PersonAdd />
+								{guests} {guests > 1 ? "Guests" : "Guest"}
 							</Button>
 						</ButtonGroup>
 						<Form inline>
@@ -93,6 +107,7 @@ export const NavBar = () => {
 						)}
 					</Nav>
 				</Navbar.Collapse>
+				{isSearchModalOpen && <SearchStayWithDate />}
 			</Container>
 		</Navbar>
 	);

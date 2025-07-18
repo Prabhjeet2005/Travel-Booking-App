@@ -5,6 +5,7 @@ import "./SearchStayWithDate.css";
 import { DateContext } from "../../context/DateContext";
 import { CategoryContext } from "../../context/CategoryContextProvider";
 import axios from "axios";
+import {useNavigate} from "react-router-dom"
 
 const SearchStayWithDate = () => {
 	const {
@@ -26,7 +27,6 @@ const SearchStayWithDate = () => {
 			setHotels(hotelData.data.data || []);
 		})();
 	}, [hotelCategory]);
-	console.log(hotels);
 
 	const handleSearchModalOpen = () => {
 		dateDispatch({
@@ -57,7 +57,6 @@ const SearchStayWithDate = () => {
 		
 	);
 
-	console.log("🚀 ~ SearchStayWithDate ~ destinationOptions:", destinationOptions)
 	const handleDestinationOptionClick = (address)=>{
 		dateDispatch({
 			type:"DESTINATION",
@@ -78,6 +77,11 @@ const SearchStayWithDate = () => {
 		dateDispatch({
 			type: "HIDE_DESTINATION_DROPDOWN",
 		});
+	}
+
+	const navigate = useNavigate();
+	const handleSearchButtonClick = ()=>{
+		navigate(`/hotels/searchResults/${destination}`)
 	}
 
 	return (
@@ -105,21 +109,21 @@ const SearchStayWithDate = () => {
 					<DateSelect checkInType="out" />
 				</section>
 				<section className="search-stay-label-input-container">
-					<section
-						className="search-stay"
-						value={guests}
-						onChange={(e) => handleGuestsChange(e)}>
-						Guests
-					</section>
+					<section className="search-stay">Guests</section>
 					<section className="search-stay">
 						<input
 							className="search-stay-input"
 							onFocus={handleGuestFocus}
 							placeholder="Add Guests"
+							defaultValue={1}
+							value={guests}
+							onChange={(e) => handleGuestsChange(e)}
 						/>
 					</section>
 				</section>
-				<section className="search-button hover-tranform">
+				<section
+					onClick={handleSearchButtonClick}
+					className="search-button hover-tranform">
 					<Search />
 				</section>
 				<section

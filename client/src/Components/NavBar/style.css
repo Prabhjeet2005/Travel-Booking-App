@@ -84,8 +84,11 @@
 	background-color: white !important;
 	color: black !important;
 	border: none !important;
-	font-size: x-large !important;
+	font-size: larger !important;
 	padding: 0px 12px 2px 12px !important;
+	display: flex !important;
+	align-items: center !important;
+	gap: 4px !important;
 }
 
 .searchBar:focus {
@@ -94,6 +97,6 @@
 	border: none !important;
 }
 
-.navbar-space{
+.navbar-space {
 	min-width: 50%;
 }
