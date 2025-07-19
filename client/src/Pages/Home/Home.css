@@ -26,3 +26,13 @@
 	background-color: orange;
 	transform: scale(1.1);
 }
+.ban-icons{
+	position: fixed;
+	top: 40vh;
+
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	font-size: x-large;
+	font-weight: 300;
+}

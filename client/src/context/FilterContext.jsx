@@ -7,6 +7,9 @@ const initialValue = {
 	numberOfBathrooms: "Any",
 	numberOfBedrooms: "Any",
 	numberOfBeds: "Any",
+	propertyType: "",
+	rating: "1+",
+	isCancelable:true,
 };
 
 export const FilterContext = createContext(initialValue);
@@ -14,22 +17,28 @@ export const FilterContext = createContext(initialValue);
 const FilterContextProvider = ({ children }) => {
 	const [
 		{
+			rating,
+			propertyType,
 			numberOfBathrooms,
 			numberOfBedrooms,
 			numberOfBeds,
 			isFilterWindowOpen,
 			priceRange,
+			isCancelable,
 		},
 		filterDispatch,
 	] = useReducer(filterReducer, initialValue);
 	return (
 		<FilterContext.Provider
 			value={{
+				rating,
+				propertyType,
 				numberOfBathrooms,
 				numberOfBedrooms,
 				numberOfBeds,
 				isFilterWindowOpen,
 				priceRange,
+				isCancelable,
 				filterDispatch,
 			}}>
 			{children}

@@ -30,6 +30,23 @@ export const filterReducer = (state, { type, payload }) => {
 			return { ...state, numberOfBeds: payload };
 		case "BATHROOM":
 			return { ...state, numberOfBathrooms: payload };
+		case "PROPERTY":
+			return { ...state, propertyType: payload };
+		case "RATING":
+			return { ...state, rating: payload };
+		case "CANCEL_TOGGLE":
+			return { ...state, isCancelable: !state.isCancelable };
+		case "CLEAR_ALL":
+			return {
+				...state,
+				priceRange: [200, 25000],
+				numberOfBathrooms: "Any",
+				numberOfBedrooms: "Any",
+				numberOfBeds: "Any",
+				propertyType: "",
+				rating: "1+",
+				isCancelable: true,
+			};
 		default:
 			return state;
 	}

@@ -8,12 +8,24 @@ import FilterRating from "./FilterRating/FilterRating";
 import { FilterContext } from "../../context/FilterContext";
 
 const Filters = () => {
-	const {isFilterWindowOpen,filterDispatch} = useContext(FilterContext)
+	const {isCancelable,isFilterWindowOpen,filterDispatch} = useContext(FilterContext)
 	const handleFilterWindowClose = ()=>{
 		filterDispatch({
 			type: "TOGGLE_FILTER_WINDOW",
 		});
 		console.log(isFilterWindowOpen);
+	}
+
+	const handleChecked = ()=>{
+		filterDispatch({
+			type:"CANCEL_TOGGLE",
+		})
+	}
+
+	const handleClearAllClick = ()=>{
+		filterDispatch({
+			type:"CLEAR_ALL"
+		})
 	}
 
 	return (
@@ -38,11 +50,10 @@ const Filters = () => {
         <FilterRating />
         <section className="heading same-row free-cancel">
           <section className="">Free Cancellation</section>
-          <input className="checkbox" type="checkbox" />
+          <input onClick={handleChecked} checked={isCancelable} value={isCancelable} className="checkbox" type="checkbox" />
         </section>
-        <section className="clear-apply-container">
+        <section className="clear-apply-container" onClick={handleClearAllClick}>
           <section className="clear-all">Clear Filters</section>
-          <section className="apply-changes">Apply Filters</section>
         </section>
 			</section>
 		</section>

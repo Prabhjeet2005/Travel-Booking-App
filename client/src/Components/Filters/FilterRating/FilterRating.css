@@ -27,7 +27,7 @@
 	background-color: white;
 	color: lightseagreen;
 }
-.rating-button:hover {
+.rating-button:hover,.selected-rating {
 	background-color: lightseagreen;
 	color: white;
 	transform: scale(1.1);

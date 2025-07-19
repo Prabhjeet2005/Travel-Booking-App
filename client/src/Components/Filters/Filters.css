@@ -71,7 +71,7 @@
 
 .clear-apply-container {
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	font-size: x-large;
 	font-weight: 500;
 }

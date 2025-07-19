@@ -8,11 +8,14 @@ import useApi from "../../useApi";
 import { CategoryContext } from "../../context/CategoryContextProvider";
 import SearchStayWithDate from "../../Components/SearchStayWithDate/SearchStayWithDate";
 import { DateContext } from "../../context/DateContext";
-import { Funnel } from "react-bootstrap-icons";
+import { Ban, Funnel } from "react-bootstrap-icons";
 import { FilterContext } from "../../context/FilterContext";
 import Filters from "../../Components/Filters/Filters";
 import { getHotelsByPrice } from "../../utlis/FilterHotelByPrice";
 import { getHotelsByRoomsAndBeds } from "../../utlis/FilterHotelByRoomsAndBeds";
+import { getFilteredPropertyType } from "../../utlis/FilterHotelByProperty";
+import { getFilteredHotelByRating } from "../../utlis/FilterHotelByRating";
+import { getFilteredHotelCancellable } from "../../utlis/FilterHotelByCancellable";
 
 export const Home = () => {
 	const [hotels, setHotels] = useState([]);
@@ -38,11 +41,14 @@ export const Home = () => {
 	console.log({ hotels });
 
 	const {
+		propertyType,
 		isFilterWindowOpen,
 		priceRange,
 		numberOfBathrooms,
 		numberOfBedrooms,
 		numberOfBeds,
+		rating,
+		isCancelable,
 		filterDispatch,
 	} = useContext(FilterContext);
 	const handleFilterClick = () => {
@@ -57,6 +63,17 @@ export const Home = () => {
 		numberOfBedrooms,
 		numberOfBathrooms
 	);
+	const filterHotelByPropertyType = getFilteredPropertyType(
+		filterHotelByRoomsAndBeds,
+		propertyType
+	);
+	const filterHotelByRating = getFilteredHotelByRating(
+		filterHotelByPropertyType,rating
+	);
+	const filterByCancellable = getFilteredHotelCancellable(
+		filterHotelByRating,
+		isCancelable
+	);
 
 	return (
 		<>
@@ -69,12 +86,14 @@ export const Home = () => {
 			{isFilterWindowOpen && <Filters />}
 
 			<section className="hotel-card-container">
-				{filterHotelByRoomsAndBeds && filterHotelByRoomsAndBeds.length > 0 ? (
-					filterHotelByRoomsAndBeds.map((hotel) => (
+				{filterByCancellable && filterByCancellable.length > 0 ? (
+					filterByCancellable.map((hotel) => (
 						<HotelCard key={hotel._id} hotel={hotel} />
 					))
 				) : (
-					<section>No Hotels Found In {hotelCategory} </section>
+					<section className="ban-icons">
+						No Hotels Found <Ban />{" "}
+					</section>
 				)}
 			</section>
 		</>
