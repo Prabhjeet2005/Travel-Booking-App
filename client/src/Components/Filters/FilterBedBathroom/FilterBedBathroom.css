@@ -1,0 +1,48 @@
+.outer-container {
+	display: flex;
+	gap: 8px;
+}
+.label-container,
+.options-container {
+	gap: 23px;
+	display: flex;
+	flex-direction: column;
+  font-weight: 200;
+}
+.labels {
+
+}
+.options-container {
+	gap: 20px;
+	display: flex;
+	flex-direction: column;
+}
+.options-row-container {
+	display: flex;
+	gap: 36px;
+}
+.options-row-item {
+	border: 1px solid gray;
+	/* padding: 0 4px; */
+	min-width: 50px;
+	text-align: center;
+	border-radius: 4px;
+  font-weight: 300;
+  transition: transform 0.3s ease;
+}
+
+.options-row-item:hover{
+  cursor: pointer;
+  transform: scale(1.1);
+  color: white;
+  background-color: orange;
+}
+
+.button-scale{
+  transition: transform 0.3s ease;
+}
+.button-scale:hover{
+  cursor: pointer;
+  transform: scale(1.1);
+  color: white;
+}

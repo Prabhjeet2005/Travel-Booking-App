@@ -1,0 +1,36 @@
+.property-outer-container {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+.property-title {
+	font-size: x-large;
+	color: dimgray;
+	font-weight: 200;
+}
+.property-container {
+	display: flex;
+	justify-content: space-around;
+}
+.property-button {
+	padding: 28px 16px;
+	border: 1px solid gray;
+	border-radius: 4px;
+	/* width: 88px; */
+	/* text-align: center; */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 150px;
+	font-size: larger;
+	font-weight: 400;
+	/* font-style: italic; */
+	transition: transform 0.3s ease;
+}
+
+.property-button:hover {
+	cursor: pointer;
+	transform: scale(1.1);
+	color: white;
+	background-color: orange;
+}

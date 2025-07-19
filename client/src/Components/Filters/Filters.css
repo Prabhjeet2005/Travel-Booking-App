@@ -1,0 +1,93 @@
+.background-blurry {
+	width: 100%;
+	height: 100%;
+	backdrop-filter: blur(2px);
+	position: absolute;
+}
+.filter-container {
+	position: fixed;
+	top: 150px;
+	right: 50px;
+	min-width: 80%;
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+	padding: 8px 30px;
+	border-radius: 8px;
+	min-height: 50%;
+	background-color: white;
+}
+.filter-item {
+	display: flex;
+	justify-content: space-between;
+}
+
+.same-row {
+	display: flex;
+	align-items: center;
+}
+.seperate-row {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+.heading {
+	font-size: x-large;
+	color: dimgray;
+	font-weight: 200;
+}
+.heading-filter {
+	font-size: xx-large;
+	color: dimgray;
+	font-weight: 200;
+}
+
+.cross-icons {
+	cursor: pointer;
+	font-size: x-large;
+	transition: transform 0.3s ease;
+}
+.cross-icons:hover {
+	transform: scale(1.1);
+}
+
+.free-cancel {
+	display: flex;
+	gap: 16px;
+	align-items: center;
+}
+
+.checkbox {
+	transform: scale(1.5);
+}
+.checkbox:checked {
+	background-color: orange;
+	accent-color: orange;
+}
+
+.clear-apply-container {
+	display: flex;
+	justify-content: space-between;
+	font-size: x-large;
+	font-weight: 500;
+}
+.clear-all {
+	color: white;
+	background-color: red;
+	padding: 4px 8px;
+	border-radius: 4px;
+}
+.apply-changes {
+	color: white;
+	background-color: darkorange;
+	padding: 4px 8px;
+	border-radius: 4px;
+}
+.clear-all,
+.apply-changes {
+  cursor: pointer;
+	transition: transform 0.3s ease;
+}
+.clear-all:hover,.apply-changes:hover{
+  transform: scale(1.1);
+}
