@@ -1,9 +1,36 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./FilterBedBathroom.css";
+import { FilterContext } from "../../../context/FilterContext";
 
 const FilterBedBathroom = () => {
-	const options = ["Any", "1", "2", "3", "4", "5+"];
+	const options = ["Any", "1+", "2+", "3+", "4+", "5+"];
+	const {
+		numberOfBathrooms,
+		numberOfBedrooms,
+		numberOfBeds,
+		isFilterWindowOpen,
+		priceRange,
+		filterDispatch,
+	} = useContext(FilterContext);
 
+	const handleBedroomOptionClick = (item) => {
+		filterDispatch({
+			type: "BEDROOM",
+			payload: item,
+		});
+	};
+	const handleBedsOptionClick = (item) => {
+		filterDispatch({
+			type: "BEDS",
+			payload: item,
+		});
+	};
+	const handleBathroomOptionClick = (item) => {
+		filterDispatch({
+			type: "BATHROOM",
+			payload: item,
+		});
+	};
 	return (
 		<section className="outer-container">
 			<section className="label-container">
@@ -14,17 +41,38 @@ const FilterBedBathroom = () => {
 			<section className="options-container">
 				<section className="options-row-container">
 					{options.map((item) => (
-						<section className="options-row-item" key={item}>{item}</section>
+						<section
+							onClick={() => handleBedroomOptionClick(item)}
+							className={`options-row-item ${
+								numberOfBedrooms.toString() === item ? "selected" : ""
+							}`}
+							key={item}>
+							{item}
+						</section>
 					))}
 				</section>
 				<section className="options-row-container">
 					{options.map((item) => (
-						<section className="options-row-item" key={item}>{item}</section>
+						<section
+							onClick={() => handleBedsOptionClick(item)}
+							className={`options-row-item ${
+								numberOfBeds.toString() === item ? "selected" : ""
+							}`}
+							key={item}>
+							{item}
+						</section>
 					))}
 				</section>
 				<section className="options-row-container">
 					{options.map((item) => (
-						<section className="options-row-item" key={item}>{item}</section>
+						<section
+							onClick={() => handleBathroomOptionClick(item)}
+							className={`options-row-item ${
+								numberOfBathrooms.toString() === item ? "selected" : ""
+							}`}
+							key={item}>
+							{item}
+						</section>
 					))}
 				</section>
 			</section>
@@ -33,3 +81,5 @@ const FilterBedBathroom = () => {
 };
 
 export default FilterBedBathroom;
+
+// TODO :  Make A New Filter for bedroom bathroom beds

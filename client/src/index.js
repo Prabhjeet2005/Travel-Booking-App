@@ -8,23 +8,26 @@ import { routes } from "./routes";
 import "bootstrap/dist/css/bootstrap.min.css";
 import CategoryContextProvider from "./context/CategoryContextProvider";
 import DateContextProvider from "./context/DateContext";
+import FilterContextProvider from "./context/FilterContext";
 
 const router = createBrowserRouter([
-  {
-   path:"/",
-    element:<App />,
-    children:routes
-  }
-])
+	{
+		path: "/",
+		element: <App />,
+		children: routes,
+	},
+]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<UserContextProvider>
 		<CategoryContextProvider>
 			<DateContextProvider>
-				<RouterProvider router={router}>
-					<App />
-				</RouterProvider>
+				<FilterContextProvider>
+					<RouterProvider router={router}>
+						<App />
+					</RouterProvider>
+				</FilterContextProvider>
 			</DateContextProvider>
 		</CategoryContextProvider>
 	</UserContextProvider>

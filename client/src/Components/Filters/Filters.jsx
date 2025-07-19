@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Funnel, XLg } from "react-bootstrap-icons";
 import "./Filters.css";
 import FilterPriceRange from "./FilterPriceRange/FilterPriceRange";
 import FilterBedBathroom from "./FilterBedBathroom/FilterBedBathroom";
 import PropertyType from "./FilterPropertyType/PropertyType";
 import FilterRating from "./FilterRating/FilterRating";
+import { FilterContext } from "../../context/FilterContext";
 
 const Filters = () => {
+	const {isFilterWindowOpen,filterDispatch} = useContext(FilterContext)
+	const handleFilterWindowClose = ()=>{
+		filterDispatch({
+			type: "TOGGLE_FILTER_WINDOW",
+		});
+		console.log(isFilterWindowOpen);
+	}
+
 	return (
 		<section className="background-blurry">
 			<section className="filter-container">
@@ -14,7 +23,7 @@ const Filters = () => {
 					<section className="same-row heading-filter">
 						 <Funnel /> Filters
 					</section>
-					<section className="cross-icons">
+					<section onClick={handleFilterWindowClose} className="cross-icons">
 						<XLg />
 					</section>
 				</section>

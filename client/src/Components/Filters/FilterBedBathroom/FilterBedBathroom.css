@@ -41,8 +41,10 @@
 .button-scale{
   transition: transform 0.3s ease;
 }
-.button-scale:hover{
+.button-scale:hover,.selected{
   cursor: pointer;
   transform: scale(1.1);
   color: white;
+	background-color: orange;
 }
+
