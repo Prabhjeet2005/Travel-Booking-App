@@ -1,3 +1,4 @@
+import Filters from "./Components/Filters/Filters";
 import { Home } from "./Pages";
 import SearchResult from "./Pages/SearchResults/SearchResult";
 import SingleHotelPage from "./Pages/SingleHotel/SingleHotelPage";
@@ -9,4 +10,5 @@ export const routes = [
 		element: <SingleHotelPage />,
 	},
 	{ path: "/hotels/searchResults/:address", element: <SearchResult /> },
+	{path:"/filters",element:<Filters />}
 ];

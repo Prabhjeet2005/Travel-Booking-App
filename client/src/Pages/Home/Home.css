@@ -5,3 +5,34 @@
 	margin-bottom: 32px;
 	margin-top: 110px;
 }
+
+.filter-label-icon {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	border: 1px solid darkgray;
+	border-radius: 4px;
+	cursor: pointer;
+	position: fixed;
+	left: 48px;
+	padding: 4px;
+	border-radius: 4px;
+	top: 126px;
+	font-size: x-large;
+	transition: transform 0.3s ease;
+}
+.filter-label-icon:hover{
+	color: white;
+	background-color: orange;
+	transform: scale(1.1);
+}
+.ban-icons{
+	position: fixed;
+	top: 40vh;
+
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	font-size: x-large;
+	font-weight: 300;
+}

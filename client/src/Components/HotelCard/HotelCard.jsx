@@ -35,7 +35,7 @@ export const HotelCard = ({ hotel, wishlist={} }) => {
 					<span>
 						<Rating readonly allowFraction initialValue={rating} size={20} />
 					</span>
-					<span>{rating.toFixed(1)}</span>
+					<span>{rating}</span>
 				</span>
 			</section>
 			<section className="hotel-card-desc">{name}</section>

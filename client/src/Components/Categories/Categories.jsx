@@ -3,7 +3,7 @@ import useApi from "../../useApi";
 import { ENDPOINTS } from "../../apiUtils";
 import CategoryCard from "./CategoryCard";
 import "./CategoryCard.css";
-import { ArrowLeftCircle, ArrowRightCircle } from "react-bootstrap-icons";
+import { ArrowLeftCircle, ArrowRightCircle, Filter, Funnel } from "react-bootstrap-icons";
 import { CategoryContext } from "../../context/CategoryContextProvider";
 
 export const Categories = () => {
