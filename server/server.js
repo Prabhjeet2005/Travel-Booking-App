@@ -16,7 +16,7 @@ const app = express();
 
 app.use(
 	cors({
-		origin: "http://localhost:3000",
+		origin: process.env.CLIENT_URL,
 		credentials: true,
 	})
 );
@@ -29,13 +29,13 @@ app.use("/api/users", userRouter);
 app.use("/api/wishlist", wishlistRouter);
 app.use("/api/orders", orderRouter);
 app.use("/api/dataImport", dataImportRouter);
-app.use("/api/*splat",errorController)
+app.use("/api/*splat", errorController);
 
 app.use(errorHandler);
 
-app.listen(process.env.PORT || 3500, () => {
-	console.clear();
-	console.log("Server Running");
-});
+// app.listen(process.env.PORT || 3500, () => {
+// 	console.clear();
+// 	console.log("Server Running");
+// });
 
-// module.exports = app;
+module.exports = app;
