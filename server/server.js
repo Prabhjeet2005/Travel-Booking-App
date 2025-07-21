@@ -10,7 +10,8 @@ const categoryRouter = require("./routes/category.route");
 const userRouter = require("./routes/user.route");
 const wishlistRouter = require("./routes/wishlist.route");
 const { errorController } = require("./controllers/error.controller");
-const cors = require("cors")
+const cors = require("cors");
+const orderRouter = require("./routes/order.route");
 const app = express();
 
 app.use(
@@ -26,6 +27,7 @@ app.use("/api/hotels", hotelRouter);
 app.use("/api/categories", categoryRouter);
 app.use("/api/users", userRouter);
 app.use("/api/wishlist", wishlistRouter);
+app.use("/api/orders", orderRouter);
 app.use("/api/dataImport", dataImportRouter);
 app.use("/api/*splat",errorController)
 

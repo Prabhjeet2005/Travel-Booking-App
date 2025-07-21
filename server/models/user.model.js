@@ -13,6 +13,7 @@ const userSchema = new Schema(
 				ref: "hotel",
 			},
 		],
+		orders: [Object],
 	},
 	{ timestamps: true }
 );
@@ -24,27 +25,27 @@ userSchema.statics.createUser = async (userData) => {
 		errorCreator("User Already Exists", 402);
 	}
 	const user = await UserModel.create(userData);
-  if(!user){
-    errorCreator("Error While Creating User",400)
-  }
+	if (!user) {
+		errorCreator("Error While Creating User", 400);
+	}
 	return user;
 };
 
-userSchema.statics.findUser = async(email)=>{
-  const user = await UserModel.findOne({email})
-  if(!user){
-    errorCreator("User Doesn't Exist",400)
-  }
-  return user
-}
+userSchema.statics.findUser = async (email) => {
+	const user = await UserModel.findOne({ email });
+	if (!user) {
+		errorCreator("User Doesn't Exist", 400);
+	}
+	return user;
+};
 
-userSchema.statics.addWishlist = async(email,hotelId)=>{
-	const user = await UserModel.findOne({email})
+userSchema.statics.addWishlist = async (email, hotelId) => {
+	const user = await UserModel.findOne({ email });
 	const isPresent = user.wishlist.find(
-		item=>item._id.toString() === hotelId.toString()
-	)
-	if(isPresent){
-		errorCreator("Hotel Already in Wishlist",400)
+		(item) => item._id.toString() === hotelId.toString()
+	);
+	if (isPresent) {
+		errorCreator("Hotel Already in Wishlist", 400);
 	}
 
 	const addToWishlist = await UserModel.findOneAndUpdate(
@@ -52,45 +53,68 @@ userSchema.statics.addWishlist = async(email,hotelId)=>{
 		{ $addToSet: { wishlist: hotelId } },
 		{ new: true }
 	);
-	if(!addToWishlist){
-		errorCreator("Error While Adding To Wishlist")
+	if (!addToWishlist) {
+		errorCreator("Error While Adding To Wishlist");
 	}
 	return user;
-}
+};
 
-userSchema.statics.deleteFromWishlist = async(email,hotelId)=>{
-	const user = await UserModel.findOne({email})
+userSchema.statics.deleteFromWishlist = async (email, hotelId) => {
+	const user = await UserModel.findOne({ email });
 	const isPresent = user.wishlist.find(
-		item=>item._id.toString() === hotelId.toString()
-	)
-	if(!isPresent){
-		errorCreator("Hotel Not Found in Wishlist",404)
+		(item) => item._id.toString() === hotelId.toString()
+	);
+	if (!isPresent) {
+		errorCreator("Hotel Not Found in Wishlist", 404);
 	}
-	
+
 	const wishlist = await UserModel.findOneAndUpdate(
-		{email},
-		{$pull:{wishlist:hotelId}},
-		{new:true}
-	)
+		{ email },
+		{ $pull: { wishlist: hotelId } },
+		{ new: true }
+	);
 	if (!wishlist) {
 		errorCreator("Error Deleting From Wishlist", 400);
 	}
 	return wishlist;
-}
+};
 
-userSchema.statics.getWishlist = async(email)=>{
-	const wishlist = await UserModel.findOne({email},{wishlist:1}).populate("wishlist")
-	if(!wishlist){
-		errorCreator("Error Displaying Wishlist",400)
-	}
-	return wishlist
-}
-userSchema.statics.getWishlistById = async (email) => {
-	const wishlist = await UserModel.findOne({ email }, { wishlist: 1 })
+userSchema.statics.getWishlist = async (email) => {
+	const wishlist = await UserModel.findOne({ email }, { wishlist: 1 }).populate(
+		"wishlist"
+	);
 	if (!wishlist) {
 		errorCreator("Error Displaying Wishlist", 400);
 	}
 	return wishlist;
+};
+userSchema.statics.getWishlistById = async (email) => {
+	const wishlist = await UserModel.findOne({ email }, { wishlist: 1 });
+	if (!wishlist) {
+		errorCreator("Error Displaying Wishlist", 400);
+	}
+	return wishlist;
+};
+
+userSchema.statics.findAllOrders = async (email) => {
+	const orderResult = await UserModel.findOne({ email }, { orders: 1, name: 1 });
+	if (!orderResult) {
+		errorCreator("Error Fetching Orders", 400);
+	}
+	return orderResult;
+};
+userSchema.statics.addOrders = async (email,data) => {
+	const orderResult = await UserModel.findOneAndUpdate(
+		{ email },
+		{
+			$push: { orders:{data} },
+		},
+		{new:true}
+	);
+	if (!orderResult) {
+		errorCreator("Error Adding to Orders", 400);
+	}
+	return orderResult;
 };
 
 const UserModel = model("user", userSchema);

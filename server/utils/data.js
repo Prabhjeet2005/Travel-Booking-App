@@ -9,10 +9,10 @@ const hotelDataRaw = {
 			image:
 				"https://a0.muscache.com/im/pictures/miso/Hosting-26117817/original/9da40e3c-5846-4359-bb41-05c27b09a8f5.jpeg?im_w=720",
 			imageArr: [
-				"https://a0.muscache.com/im/pictures/miso/Hosting-578733555164036351/original/fc0129d6-02df-4782-92e9-051a881c67a5.jpeg?im_w=720",
-				"https://a0.muscache.com/im/pictures/miso/Hosting-578733555164036351/original/694d278e-ff0d-4c08-b549-de3a07313be8.jpeg?im_w=720",
-				"https://a0.muscache.com/im/pictures/miso/Hosting-578733555164036351/original/c3222377-07de-4376-868d-d1b55b06390c.jpeg?im_w=720",
-				"https://a0.muscache.com/im/pictures/miso/Hosting-578733555164036351/original/8d2a7815-1e0e-4946-8457-8884f5842fff.jpeg?im_w=720",
+				"https://a0.muscache.com/im/pictures/062b4382-2379-4858-a750-a13f8baac367.jpg?im_w=720",
+				"https://a0.muscache.com/im/pictures/7fae41d2-161c-4713-a8f3-c951f0f3b479.jpg?im_w=720",
+				"https://a0.muscache.com/im/pictures/e33cf17f-8324-482c-a2dc-13db163e28d8.jpg?im_w=720",
+				"https://a0.muscache.com/im/pictures/f2e679c9-f051-4e2b-830b-212be491e530.jpg?im_w=720",
 			],
 			address: "Jibhi",
 			city: "Banjar Valley",
@@ -44,7 +44,7 @@ const hotelDataRaw = {
 			image:
 				"https://a0.muscache.com/im/pictures/90d0b224-16e2-41c1-9819-6002749a193e.jpg?im_w=720",
 			imageArr: [
-				"https://a0.muscache.com/im/pictures/miso/Hosting-53407714/original/f3cf4c09-5419-4f1c-b47c-01987c09b4df.jpeg?im_w=720",
+				"https://a0.muscache.com/im/pictures/062b4382-2379-4858-a750-a13f8baac367.jpg?im_w=720",
 				"https://a0.muscache.com/im/pictures/c1947f8b-da1e-4800-badf-ed51be3e90da.jpg?im_w=720",
 				"https://a0.muscache.com/im/pictures/miso/Hosting-53407714/original/db0a4d4b-f03a-4c36-a70b-d87bf32c41a7.jpeg?im_w=720",
 				"https://a0.muscache.com/im/pictures/2430bf07-ec42-4b91-9e16-2f88939671fd.jpg?im_w=720",
@@ -120,9 +120,9 @@ const hotelDataRaw = {
 			image:
 				"https://a0.muscache.com/im/pictures/miso/Hosting-46781700/original/2b25b21b-87d4-48c9-b796-c2cd04af2788.jpeg?im_w=1200",
 			imageArr: [
-				"https://a0.muscache.com/im/pictures/miso/Hosting-46781700/original/76c122b8-e7ab-4933-a5ba-cfc86f949db5.jpeg?im_w=720",
+				"https://a0.muscache.com/im/pictures/miso/Hosting-53407714/original/db0a4d4b-f03a-4c36-a70b-d87bf32c41a7.jpeg?im_w=720",
+				"https://a0.muscache.com/im/pictures/2430bf07-ec42-4b91-9e16-2f88939671fd.jpg?im_w=720",
 				"https://a0.muscache.com/im/pictures/miso/Hosting-46781700/original/1eaf860f-053d-46d9-9ee9-c7a603473ed0.jpeg?im_w=720",
-				"https://a0.muscache.com/im/pictures/miso/Hosting-46781700/original/57c1ca9f-8a11-4453-a15a-d6f0a257931c.jpeg?im_w=720",
 				"https://a0.muscache.com/im/pictures/miso/Hosting-46781700/original/eaf3779d-7978-4850-909b-c7a6ae6d15d8.jpeg?im_w=720",
 			],
 			address: "Rishikesh",
@@ -237,49 +237,6 @@ const hotelDataRaw = {
 			isCancelable: true,
 		},
 
-		// from here
-		{
-			id: uuid(),
-			name: "Folktales ; a Boutique Homestay & Artist Retreat#",
-			category: "Caves",
-			image:
-				"https://a0.muscache.com/im/pictures/cfdf5973-9fc1-42d3-bde1-a072fdbe1825.jpg?im_w=1200",
-			imageArr: [
-				"https://a0.muscache.com/im/pictures/c7ecaa29-a2a6-4e50-8dd5-a4719096fb4b.jpg?im_w=720",
-				"https://a0.muscache.com/im/pictures/d9f4455c-f29b-4068-81b8-c05957239930.jpg?im_w=720",
-				"https://a0.muscache.com/im/pictures/eba3d6d8-8b5b-43a0-b1d4-05a4bb1c578b.jpg?im_w=720",
-				"https://a0.muscache.com/im/pictures/941cc6e4-4178-489b-b92c-1df3af7a3464.jpg?im_w=720",
-			],
-			address: "Rakchham",
-			city: "Rakchham",
-			state: "Himachal Pradesh",
-			country: "India",
-			price: 1850,
-			rating: 4.92,
-			numberOfBathrooms: 3,
-			numberOfBeds: 2,
-			numberOfguest: 5,
-			numberOfBedrooms: 2,
-			numberOfStudies: 3,
-			hostName: "Ishan",
-			hostJoinedOn: "July 2015",
-			ameneties: ["Kitchen", "Wifi", "Pets Allowed"],
-			healthAndSafety: [
-				"No Smoke alarm",
-				"No Carbon monoxide alarm",
-				"Nearby lake, river, other body of water",
-			],
-			houseRules: [
-				"Check-in: 12:00 pm - 7:00 pm",
-				"Check out: 10:00 am",
-				"Self check-in with lockbox",
-				"Pets are allowed",
-				"No smoking",
-				"No parties or events",
-			],
-			propertyType: "House",
-			isCancelable: true,
-		},
 		{
 			id: uuid(),
 			name: "Free Birds, Charang",
