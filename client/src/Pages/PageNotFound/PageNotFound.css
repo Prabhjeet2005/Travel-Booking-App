@@ -1,0 +1,29 @@
+.pg-not-found-container {
+	position: fixed;
+	position: fixed;
+	top: 35%;
+	left: 40%;
+  font-size: xx-large;
+}
+
+.pg-not-found-title {
+	display: flex;
+	justify-content: center;
+}
+
+.pg-not-found-btn {
+	display: flex;
+	justify-content: center;
+	border: 1px solid red;
+	border-radius: 8px;
+	color: red;
+}
+.pg-not-found-btn:hover {
+	display: flex;
+	justify-content: center;
+	border: 1px solid red;
+	border-radius: 8px;
+  background-color: red;
+	color: white;
+  cursor:pointer
+}

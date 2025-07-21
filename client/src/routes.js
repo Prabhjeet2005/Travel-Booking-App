@@ -4,6 +4,7 @@ import { Home } from "./Pages";
 import LoginSignupPg from "./Pages/LoginSignup/LoginSignupPg";
 import Orders from "./Pages/Orders/Orders";
 import OrderSummary from "./Pages/OrderSummary/OrderSummary";
+import PagenotFound from "./Pages/PageNotFound/PagenotFound";
 import SearchResult from "./Pages/SearchResults/SearchResult";
 import SingleHotelPage from "./Pages/SingleHotel/SingleHotelPage";
 import Wishlist from "./Pages/Wishlist/Wishlist";
@@ -21,4 +22,5 @@ export const routes = [
 	{ path:"/wishlist",element:<Wishlist />},
 	{ path:"/order/:id",element:<Orders />},
 	{ path:"/order-summary",element:<OrderSummary />},
+	{ path:"*",element:<PagenotFound />},
 ];
