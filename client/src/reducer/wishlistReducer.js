@@ -1,7 +1,7 @@
 export const wishlistReducer = (state, { type, payload }) => {
   switch (type) {
 		case "EXISTING_WISHLIST":
-			return { ...state, wishlist: payload.wishlist };
+			return { ...state, wishlist: payload?.wishlist };
 		case "ADD_TO_WISHLIST":
       // Add to existing array type of push
 			return { ...state, wishlist: [...state.wishlist, payload] };

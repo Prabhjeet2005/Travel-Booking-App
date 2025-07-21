@@ -58,18 +58,19 @@ export const Home = () => {
 			if (isUserLoggedIn) {
 				(async () => {
 					const storedWishlist = await getWishlist();
-					console.log("🚀 ~ storedWishlist:", storedWishlist);
-					wishlistDispatch({
-						type: "EXISTING_WISHLIST",
-						payload: storedWishlist,
-					});
+					if (storedWishlist) {
+						wishlistDispatch({
+							type: "EXISTING_WISHLIST",
+							payload: storedWishlist,
+						});
+					}
 				})();
 			}
 		} catch (error) {
 			console.log(error);
 		}
 	}, [isUserLoggedIn]);
-
+	console.log({wishlist})
 	const {
 		propertyType,
 		isFilterWindowOpen,

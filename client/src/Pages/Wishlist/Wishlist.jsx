@@ -19,6 +19,7 @@ const Wishlist = () => {
       if(isUserLoggedIn){
       (async()=>{
         const payload = await getWishlistData();
+				console.log({payload})
         setWishlistCalled(payload.wishlist);
       })()}
       else{
