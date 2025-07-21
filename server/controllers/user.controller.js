@@ -31,8 +31,8 @@ const loginController = async (req, res, next) => {
 		res.cookie("authToken", token, {
 			maxAge: 24 * 60 * 60 * 1000,
 			httpOnly: true,
-			sameSite: "none", // allow cross‑site
 			secure: true,
+			sameSite: "none", // allow cross‑site
 		});
 		res.status(200).send(responseCreator("User Logged In Successfully!", data));
 	} catch (error) {
