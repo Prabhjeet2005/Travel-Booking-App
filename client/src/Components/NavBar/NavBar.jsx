@@ -66,10 +66,14 @@ export const NavBar = () => {
 		}
 	}
 
+	const handleLogoClick = ()=>{
+		navigate("/")
+	}
+
 	return (
 		<Navbar fixed="top" expand="md" className="NavbarColor position">
 			<Container fluid className="d-flex justify-between">
-				<Navbar.Brand className="navbar-heading" href="/">
+				<Navbar.Brand className="navbar-heading" onClick={handleLogoClick}>
 					Travel <SendFill className="airplane" />
 				</Navbar.Brand>
 				<Navbar.Toggle aria-controls="responsive-navbar-nav" />

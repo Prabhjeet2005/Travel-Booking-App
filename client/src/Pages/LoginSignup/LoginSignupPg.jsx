@@ -7,7 +7,6 @@ import { useLocation } from "react-router";
 
 const LoginSignupPg = () => {
 	const {pathname} = useLocation();
-	console.log("🚀 ~ LoginSignupPg ~ pathname:", pathname)
 
 	return (
 		<>
