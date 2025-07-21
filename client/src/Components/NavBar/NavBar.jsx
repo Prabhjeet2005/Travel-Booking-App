@@ -69,6 +69,7 @@ export const NavBar = () => {
 					wishlistDispatch({
 						type: "CLEAR_ALL_INPUTS",
 					});
+					navigate("/")
 				}
 			})()
 		} catch (error) {
