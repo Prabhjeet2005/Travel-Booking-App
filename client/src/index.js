@@ -9,6 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import CategoryContextProvider from "./context/CategoryContextProvider";
 import DateContextProvider from "./context/DateContext";
 import FilterContextProvider from "./context/FilterContext";
+import { AuthContextProvider } from "./context/AuthContext";
 
 const router = createBrowserRouter([
 	{
@@ -21,14 +22,16 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<UserContextProvider>
-		<CategoryContextProvider>
-			<DateContextProvider>
-				<FilterContextProvider>
-					<RouterProvider router={router}>
-						<App />
-					</RouterProvider>
-				</FilterContextProvider>
-			</DateContextProvider>
-		</CategoryContextProvider>
+		<AuthContextProvider>
+			<CategoryContextProvider>
+				<DateContextProvider>
+					<FilterContextProvider>
+						<RouterProvider router={router}>
+							<App />
+						</RouterProvider>
+					</FilterContextProvider>
+				</DateContextProvider>
+			</CategoryContextProvider>
+		</AuthContextProvider>
 	</UserContextProvider>
 );
