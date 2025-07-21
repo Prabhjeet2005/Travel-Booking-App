@@ -13,7 +13,6 @@ const Filters = () => {
 		filterDispatch({
 			type: "TOGGLE_FILTER_WINDOW",
 		});
-		console.log(isFilterWindowOpen);
 	}
 
 	const handleChecked = ()=>{

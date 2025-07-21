@@ -10,7 +10,8 @@ const App = () => {
 			success &&
 			(message === "User Logged In Successfully!" ||
 				message === "User Signned Up Successfully!" ||
-				message === "Logged Out Successfully")
+				message === "Logged Out Successfully" ||
+				message === "Hotel Added To Wishlist Successfully")
 		) {
 			toast.success(message);
 		}

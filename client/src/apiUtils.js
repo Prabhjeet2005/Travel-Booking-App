@@ -18,8 +18,9 @@ export const ENDPOINTS = {
 	},
 	WISHLIST: {
 		DISPLAY: "wishlist/getWishlist",
+		DISPLAYIDONLY: "wishlist/getWishlistIdOnly",
 		ADD: "wishlist/addToWishlist",
-		DELETE: "wishlist/deleteFromWishlist/:id",
+		DELETE: "wishlist/deleteFromWishlist",
 	},
 	CATEGORIES: {
 		DISPLAY: `categories/displayCategories?category=`,

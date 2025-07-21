@@ -17,7 +17,6 @@ const SingleHotelDescription = ({ singleHotel }) => {
 		propertyType,
 		isCancelable,
 	} = singleHotel;
-	console.log(ameneties);
 
 	return (
 		<section className="single-hotel-container">

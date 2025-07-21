@@ -10,6 +10,7 @@ import CategoryContextProvider from "./context/CategoryContextProvider";
 import DateContextProvider from "./context/DateContext";
 import FilterContextProvider from "./context/FilterContext";
 import { AuthContextProvider } from "./context/AuthContext";
+import WishlistContextProvider from "./context/WishlistContext";
 
 const router = createBrowserRouter([
 	{
@@ -23,15 +24,17 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<UserContextProvider>
 		<AuthContextProvider>
-			<CategoryContextProvider>
-				<DateContextProvider>
-					<FilterContextProvider>
-						<RouterProvider router={router}>
-							<App />
-						</RouterProvider>
-					</FilterContextProvider>
-				</DateContextProvider>
-			</CategoryContextProvider>
+			<WishlistContextProvider>
+				<CategoryContextProvider>
+					<DateContextProvider>
+						<FilterContextProvider>
+							<RouterProvider router={router}>
+								<App />
+							</RouterProvider>
+						</FilterContextProvider>
+					</DateContextProvider>
+				</CategoryContextProvider>
+			</WishlistContextProvider>
 		</AuthContextProvider>
 	</UserContextProvider>
 );

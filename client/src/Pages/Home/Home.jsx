@@ -8,7 +8,7 @@ import useApi from "../../useApi";
 import { CategoryContext } from "../../context/CategoryContextProvider";
 import SearchStayWithDate from "../../Components/SearchStayWithDate/SearchStayWithDate";
 import { DateContext } from "../../context/DateContext";
-import { Ban, Funnel } from "react-bootstrap-icons";
+import { Ban, Funnel, Heart, HeartFill } from "react-bootstrap-icons";
 import { FilterContext } from "../../context/FilterContext";
 import Filters from "../../Components/Filters/Filters";
 import { getHotelsByPrice } from "../../utlis/FilterHotelByPrice";
@@ -16,6 +16,9 @@ import { getHotelsByRoomsAndBeds } from "../../utlis/FilterHotelByRoomsAndBeds";
 import { getFilteredPropertyType } from "../../utlis/FilterHotelByProperty";
 import { getFilteredHotelByRating } from "../../utlis/FilterHotelByRating";
 import { getFilteredHotelCancellable } from "../../utlis/FilterHotelByCancellable";
+import { WishlistContext } from "../../context/WishlistContext";
+import { AuthContext } from "../../context/AuthContext";
+import { useNavigate } from "react-router";
 
 export const Home = () => {
 	const [hotels, setHotels] = useState([]);
@@ -38,7 +41,26 @@ export const Home = () => {
 			setHotels(hotelData.data.data || []);
 		})();
 	}, [hotelCategory]);
-	console.log({ hotels });
+
+	const { wishlist, wishlistDispatch } = useContext(WishlistContext);
+	const { isUserLoggedIn } = useContext(AuthContext);
+	const { makeRequest: getWishlist } = useApi(ENDPOINTS.WISHLIST.DISPLAYIDONLY);
+	useEffect(() => {
+		try {
+			if (isUserLoggedIn) {
+				(async () => {
+					const storedWishlist = await getWishlist();
+					console.log("🚀 ~ storedWishlist:", storedWishlist);
+					wishlistDispatch({
+						type: "EXISTING_WISHLIST",
+						payload: storedWishlist,
+					});
+				})();
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	}, [isUserLoggedIn]);
 
 	const {
 		propertyType,
@@ -68,12 +90,18 @@ export const Home = () => {
 		propertyType
 	);
 	const filterHotelByRating = getFilteredHotelByRating(
-		filterHotelByPropertyType,rating
+		filterHotelByPropertyType,
+		rating
 	);
 	const filterByCancellable = getFilteredHotelCancellable(
 		filterHotelByRating,
 		isCancelable
 	);
+
+	const navigate= useNavigate()
+	const handleWishlistIconClick = ()=>{
+		navigate("/wishlist")
+	}
 
 	return (
 		<>
@@ -82,6 +110,9 @@ export const Home = () => {
 
 			<section onClick={handleFilterClick} className="filter-label-icon">
 				<Funnel />
+			</section>
+			<section onClick={handleWishlistIconClick} className="heart-label-icon">
+				<Heart />
 			</section>
 			{isFilterWindowOpen && <Filters />}
 

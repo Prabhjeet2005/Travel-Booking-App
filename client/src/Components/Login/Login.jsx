@@ -30,7 +30,6 @@ const Login = () => {
 			payload: e.target.value,
 		});
 	};
-	console.log({ email: email.value, password: password.value });
 	const navigate = useNavigate();
 	const handleTakeToSignupClick = () => {
 		navigate("/signup");
