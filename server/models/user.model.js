@@ -85,6 +85,13 @@ userSchema.statics.getWishlist = async(email)=>{
 	}
 	return wishlist
 }
+userSchema.statics.getWishlistById = async (email) => {
+	const wishlist = await UserModel.findOne({ email }, { wishlist: 1 })
+	if (!wishlist) {
+		errorCreator("Error Displaying Wishlist", 400);
+	}
+	return wishlist;
+};
 
 const UserModel = model("user", userSchema);
 module.exports = UserModel;

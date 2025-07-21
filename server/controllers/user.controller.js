@@ -96,6 +96,17 @@ const getWishlistController = async(req,res,next)=>{
 		next(error)
 	}
 }
+const getWishlistIdOnlyController = async (req, res, next) => {
+	try {
+		const { email } = res.locals.user;
+		const wishlist = await UserModel.getWishlistById(email);
+		res
+			.status(200)
+			.send(responseCreator("Displaying Wishlist Successful!", wishlist));
+	} catch (error) {
+		next(error);
+	}
+};
 
 module.exports = {
 	signupController,
@@ -105,4 +116,5 @@ module.exports = {
 	addToWishlistController,
 	deleteFromWishlistController,
 	getWishlistController,
+	getWishlistIdOnlyController,
 };
