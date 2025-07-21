@@ -100,3 +100,21 @@
 .navbar-space {
 	min-width: 50%;
 }
+
+.color-white {
+	color: white;
+	font-weight: 500;
+}
+
+.logout-btn {
+	display: flex !important;
+	align-items: center !important;
+	gap: 4px !important;
+	background-color: red !important;
+	border-radius: 8px !important;
+	color: white !important;
+	transition: transform 0.3s ease !important;
+}
+.logout-btn:hover {
+	transform: scale(1.05);
+}

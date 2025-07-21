@@ -13,14 +13,17 @@ import {
 	SignpostSplit,
 	Calendar4Week,
 	PersonAdd,
+	Power,
+	BoxArrowRight,
 } from "react-bootstrap-icons";
 import "./style.css";
-import { Link, useSearchParams } from "react-router";
+import { Link, useLocation, useNavigate, useSearchParams } from "react-router";
 import { useIsLoggedIn } from "../../useIsLoggedIn";
 import useApi from "../../useApi";
 import { ENDPOINTS, REQUEST_TYPES } from "../../apiUtils";
 import { DateContext } from "../../context/DateContext";
 import SearchStayWithDate from "../SearchStayWithDate/SearchStayWithDate";
+import { AuthContext } from "../../context/AuthContext";
 
 export const NavBar = () => {
 	const isLoggedIn = useIsLoggedIn();
@@ -29,15 +32,39 @@ export const NavBar = () => {
 		ENDPOINTS.USERS.LOGOUT,
 		REQUEST_TYPES.POST
 	);
-	const {isSearchModalOpen, dateDispatch } = useContext(DateContext);
+	const { isSearchModalOpen, dateDispatch } = useContext(DateContext);
 	const searchStayOpenHandler = () => {
 		dateDispatch({
 			type: "OPEN_SEARCH_MODAL",
 		});
 	};
-
 	const { destination, guests, checkInDate, checkOutDate } =
 		useContext(DateContext);
+
+	const { pathname } = useLocation();
+	const navigate = useNavigate();
+	const handleLoginClick = () => {
+		navigate("/login", { pathFrom: { pathname } });
+	};
+	const handleSignupClick = () => {
+		navigate("/signup", { pathFrom: { pathname } });
+	};
+
+	const { isUserLoggedIn,authDispatch } = useContext(AuthContext);
+	const handleLogoutClick = ()=>{
+		try {
+			(async()=>{
+				const logoutSuccess = await logoutRequest();
+				if(logoutSuccess){
+					authDispatch({
+						type:"LOGOUT"
+					})
+				}
+			})()
+		} catch (error) {
+			
+		}
+	}
 
 	return (
 		<Navbar fixed="top" expand="md" className="NavbarColor position">
@@ -69,38 +96,22 @@ export const NavBar = () => {
 							</Button>
 							<Button variant="secondary" className="button-item">
 								<PersonAdd />
-								{guests} {guests > 1 ? "Guests" : "Guest"}
+								{guests === 0 ? "" : guests} {guests > 1 ? "Guests" : "Guest"}
 							</Button>
 						</ButtonGroup>
-						<Form inline>
-							<Row className="d-flex">
-								<Col xs="auto">
-									<Form.Control
-										type="text"
-										placeholder="Search"
-										className=" searchBar"
-										onChange={(e) =>
-											setSearchParams({ search: e.target.value })
-										}
-									/>
-								</Col>
-								{/* <Col xs="auto" className="">
-										<Button type="submit" variant="outline-success " >
-											<Search />
-										</Button>
-									</Col> */}
-							</Row>
-						</Form>
-						{isLoggedIn ? (
-							<Nav.Link onClick={logoutRequest} className="" href="#home">
-								Logout
+						{isUserLoggedIn ? (
+							<Nav.Link
+								onClick={handleLogoutClick}
+								className="logout-btn"
+								href="#home">
+								Logout <Power />
 							</Nav.Link>
 						) : (
 							<>
-								<Nav.Link as={Link} to="login" className="" href="#home">
+								<Nav.Link onClick={handleLoginClick} className="color-white">
 									Login
 								</Nav.Link>
-								<Nav.Link as={Link} to="signup" className="" href="#link">
+								<Nav.Link onClick={handleSignupClick} className="color-white">
 									Signup
 								</Nav.Link>
 							</>
