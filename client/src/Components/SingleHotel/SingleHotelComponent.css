@@ -163,7 +163,7 @@
 .guest-number {
 	display: flex;
 	align-items: center;
-	gap: 4px;
+	gap: 8px;
 }
 .button-reserve {
 	background-color: darkorange;
@@ -178,6 +178,10 @@
 }
 .button-reserve:hover {
 	transform: scale(1.05);
+}
+.button-reserve:disabled {
+	transform: scale(1) !important;
+	cursor: no-drop;
 }
 
 .hotel-rating {
@@ -214,11 +218,11 @@
 }
 .person-icon {
 	position: absolute;
-	left: 5px;
-	top: 0px;
+	left: 3px;
+	top: 1px;
 }
 .guest-input {
-	padding-left: 20px;
+	padding-left: 25px;
 	outline: none;
 	border: 0.5px solid darkgray;
 	border-radius: 4px;

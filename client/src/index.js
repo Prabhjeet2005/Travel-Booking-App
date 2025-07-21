@@ -11,6 +11,7 @@ import DateContextProvider from "./context/DateContext";
 import FilterContextProvider from "./context/FilterContext";
 import { AuthContextProvider } from "./context/AuthContext";
 import WishlistContextProvider from "./context/WishlistContext";
+import HotelContextProvider from "./context/HotelContext";
 
 const router = createBrowserRouter([
 	{
@@ -28,9 +29,11 @@ root.render(
 				<CategoryContextProvider>
 					<DateContextProvider>
 						<FilterContextProvider>
-							<RouterProvider router={router}>
-								<App />
-							</RouterProvider>
+							<HotelContextProvider>
+								<RouterProvider router={router}>
+									<App />
+								</RouterProvider>
+							</HotelContextProvider>
 						</FilterContextProvider>
 					</DateContextProvider>
 				</CategoryContextProvider>

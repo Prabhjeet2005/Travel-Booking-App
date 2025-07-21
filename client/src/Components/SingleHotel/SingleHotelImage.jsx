@@ -1,15 +1,21 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import "./SingleHotelComponent.css";
 import { GeoAlt } from "react-bootstrap-icons";
+import { DateContext } from "../../context/DateContext";
 
 const SingleHotelImage = ({ singleHotel }) => {
-	const { image, imageArr, name, state } = singleHotel;
+	const { image, imageArr, name, state, address } = singleHotel;
 	const [imgArray, setImgArray] = useState([]);
 	const [mainImg, setMainImg] = useState("");
+	const { dateDispatch } = useContext(DateContext);
 
 	useEffect(() => {
 		setImgArray(imageArr);
 		setMainImg(image);
+		dateDispatch({
+			type: "DESTINATION",
+			payload: address,
+		});
 	}, [image, imageArr]);
 
 	return (

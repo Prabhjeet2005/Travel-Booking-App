@@ -24,6 +24,8 @@ import { ENDPOINTS, REQUEST_TYPES } from "../../apiUtils";
 import { DateContext } from "../../context/DateContext";
 import SearchStayWithDate from "../SearchStayWithDate/SearchStayWithDate";
 import { AuthContext } from "../../context/AuthContext";
+import { WishlistContext } from "../../context/WishlistContext";
+import { UserContext } from "../../context/UserContextProvider";
 
 export const NavBar = () => {
 	const isLoggedIn = useIsLoggedIn();
@@ -51,6 +53,8 @@ export const NavBar = () => {
 	};
 
 	const { isUserLoggedIn,authDispatch } = useContext(AuthContext);
+	const {wishlistDispatch} = useContext(WishlistContext);
+	const {userData} = useContext(UserContext)
 	const handleLogoutClick = ()=>{
 		try {
 			(async()=>{
@@ -59,6 +63,12 @@ export const NavBar = () => {
 					authDispatch({
 						type:"LOGOUT"
 					})
+					dateDispatch({
+						type: "CLEAR_ALL_INPUT",
+					});
+					wishlistDispatch({
+						type: "CLEAR_ALL_INPUTS",
+					});
 				}
 			})()
 		} catch (error) {
@@ -74,7 +84,7 @@ export const NavBar = () => {
 		<Navbar fixed="top" expand="md" className="NavbarColor position">
 			<Container fluid className="d-flex justify-between">
 				<Navbar.Brand className="navbar-heading" onClick={handleLogoClick}>
-					Travel <SendFill className="airplane" />
+					Journeaze <SendFill className="airplane" />
 				</Navbar.Brand>
 				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 				<Navbar.Collapse id="responsive-navbar-nav">

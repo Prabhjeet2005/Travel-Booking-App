@@ -14,7 +14,7 @@ export const ENDPOINTS = {
 	},
 	HOTEL: {
 		DISPLAY: "hotels/displayHotels",
-		FINDID: "hotels/:id",
+		FINDID: "hotels",
 	},
 	WISHLIST: {
 		DISPLAY: "wishlist/getWishlist",
@@ -24,6 +24,10 @@ export const ENDPOINTS = {
 	},
 	CATEGORIES: {
 		DISPLAY: `categories/displayCategories?category=`,
+	},
+	ORDERS: {
+		DISPLAY: `orders/getAllOrders`,
+		ADD: `orders/addOrders`,
 	},
 };
 

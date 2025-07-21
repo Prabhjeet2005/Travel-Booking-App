@@ -14,8 +14,17 @@ const dateReducer = (state,{type,payload})=>{
 			return { ...state, isDestinationDropdownOpen: true};
 		case "HIDE_DESTINATION_DROPDOWN":
 			return {...state, isDestinationDropdownOpen:false}
+		case "CLEAR_ALL_INPUT":
+			return {
+				...state,
+				checkInDate: null,
+				checkOutDate: null,
+				destination: "",
+				guests: 0,
+				isDestinationDropdownOpen: true,
+			};
 		default:
-			break;
+			return state;
 	}
 }
 export default dateReducer
