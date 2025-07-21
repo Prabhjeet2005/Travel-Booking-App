@@ -8,7 +8,15 @@ import useApi from "../../useApi";
 import { CategoryContext } from "../../context/CategoryContextProvider";
 import SearchStayWithDate from "../../Components/SearchStayWithDate/SearchStayWithDate";
 import { DateContext } from "../../context/DateContext";
-import { Ban, Funnel, Heart, HeartFill } from "react-bootstrap-icons";
+import {
+	Ban,
+	BoxSeamFill,
+	BusFront,
+	ClipboardCheck,
+	Funnel,
+	Heart,
+	HeartFill,
+} from "react-bootstrap-icons";
 import { FilterContext } from "../../context/FilterContext";
 import Filters from "../../Components/Filters/Filters";
 import { getHotelsByPrice } from "../../utlis/FilterHotelByPrice";
@@ -98,10 +106,17 @@ export const Home = () => {
 		isCancelable
 	);
 
-	const navigate= useNavigate()
-	const handleWishlistIconClick = ()=>{
-		navigate("/wishlist")
-	}
+	const navigate = useNavigate();
+	const handleWishlistIconClick = () => {
+		navigate("/wishlist");
+	};
+	const handleSeeOrdersIconClick = () => {
+		if (isUserLoggedIn) {
+			navigate("/order-summary");
+		} else {
+			navigate("/login");
+		}
+	};
 
 	return (
 		<>
@@ -113,6 +128,9 @@ export const Home = () => {
 			</section>
 			<section onClick={handleWishlistIconClick} className="heart-label-icon">
 				<Heart />
+			</section>
+			<section onClick={handleSeeOrdersIconClick} className="bus-label-icon">
+				<ClipboardCheck />
 			</section>
 			{isFilterWindowOpen && <Filters />}
 

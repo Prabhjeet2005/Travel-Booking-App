@@ -4,10 +4,12 @@
 	justify-content: space-evenly;
 	margin-bottom: 32px;
 	margin-top: 110px;
+	padding-left: 30px;
+	padding-right: 30px;
 }
 
 .filter-label-icon,
-.heart-label-icon {
+.heart-label-icon,.bus-label-icon {
 	display: flex;
 	align-items: center;
 	gap: 4px;
@@ -25,7 +27,8 @@
 	background-color: white;
 }
 .filter-label-icon:hover,
-.heart-label-icon:hover {
+.heart-label-icon:hover,
+.bus-label-icon:hover {
 	color: white;
 	background-color: orange;
 	transform: scale(1.1);
@@ -36,7 +39,15 @@
 	color: red;
 }
 .heart-label-icon:hover {
-	background-color: red;
+	background-color: red !important;
+	color: white !important;
+}
+.bus-label-icon {
+	top: 215px;
+	color: black;
+}
+.heart-label-icon:hover {
+	background-color: orange;
 	color: white !important;
 }
 
@@ -49,4 +60,6 @@
 	gap: 8px;
 	font-size: x-large;
 	font-weight: 300;
+	text-align: center;
+	left: 41vw;
 }
