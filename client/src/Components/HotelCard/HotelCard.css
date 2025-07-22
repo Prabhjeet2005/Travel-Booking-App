@@ -77,11 +77,14 @@
 		padding: 2px 6px;
 		border-radius: 4px;
 		transition: transform 0.3s ease;
+		text-align: center;
+		display: flex;
+		justify-content: center;
 	}
 	.hotel-card-explore:hover {
 		font-weight: 800;
 		cursor: pointer;
-		transform: scale(1.1);
+		transform: scale(1.03);
 	}
 
 	.hotel-card-heart {
@@ -98,7 +101,7 @@
 		font-weight: 300;
 		font-size: small;
 	}
-	.heart-select{
+	.heart-select {
 		color: red;
 	}
 }
