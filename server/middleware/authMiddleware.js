@@ -4,11 +4,9 @@ const { errorCreator } = require("../utils/responseCreator");
 
 const authMiddleware = async (req,res,next) => {
 	try {
-		console.log("Cookies on Incoming Requests: ",req.cookies)
 		const { authToken } = req.cookies;
 		if(!authToken){
-			console.error("authToken Missing In cookies!!!!")
-			errorCreator("authToken Missing in Cookies",401)
+			errorCreator("Please allow 3rd Party Cookies",401)
 		}
 		const data = verifyToken(authToken);
 		if(!data){
