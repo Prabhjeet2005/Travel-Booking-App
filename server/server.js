@@ -1,5 +1,6 @@
 require("dotenv").config();
 require("./dbConnection");
+const cors = require("cors");
 const express = require("express");
 const cookieParser = require("cookie-parser");
 
@@ -10,7 +11,6 @@ const categoryRouter = require("./routes/category.route");
 const userRouter = require("./routes/user.route");
 const wishlistRouter = require("./routes/wishlist.route");
 const { errorController } = require("./controllers/error.controller");
-const cors = require("cors");
 const orderRouter = require("./routes/order.route");
 const app = express();
 
@@ -33,9 +33,13 @@ app.use("/api/*splat", errorController);
 
 app.use(errorHandler);
 
-// app.listen(process.env.PORT || 3500, () => {
-// 	console.clear();
-// 	console.log("Server Running");
-// });
+if (process.env.NODE_ENV === "development"){
 
-module.exports = app;
+	app.listen(process.env.PORT || 3500, () => {
+		console.clear();
+		console.log("Server Running");
+	});
+}else{
+	module.exports = app;
+}
+

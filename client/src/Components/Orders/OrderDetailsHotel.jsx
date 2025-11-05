@@ -9,6 +9,7 @@ import DateSelect from "../DateSelect/DateSelect";
 import { DateContext } from "../../context/DateContext";
 import { v4 as uuid } from "uuid";
 import { HotelContext } from "../../context/HotelContext";
+import { AuthContext } from "../../context/AuthContext";
 
 const OrderDetailsHotel = () => {
 	const { id } = useParams();
@@ -38,6 +39,7 @@ const OrderDetailsHotel = () => {
 	}, []);
 	const { image, name, address, state, rating, price } = singleHotel;
 	const { checkInDate, checkOutDate } = useContext(DateContext);
+	const { isUserLoggedIn } = useContext(AuthContext);
 	const numberOfNights =
 		(checkOutDate.getTime() - checkInDate.getTime()) / (1000 * 60 * 60 * 24);
 
@@ -55,6 +57,10 @@ const OrderDetailsHotel = () => {
 	};
 
 	const handleConfirmBookingClick = async () => {
+		if(!isUserLoggedIn){
+			navigate("/login");
+			return;
+		}
 		const response = await loadScript(
 			"https://checkout.razorpay.com/v1/checkout.js"
 		);
