@@ -12,6 +12,7 @@ const userRouter = require("./routes/user.route");
 const wishlistRouter = require("./routes/wishlist.route");
 const { errorController } = require("./controllers/error.controller");
 const orderRouter = require("./routes/order.route");
+const aiRouter = require("./routes/ai.route");
 const app = express();
 
 app.use(
@@ -29,6 +30,7 @@ app.use("/api/users", userRouter);
 app.use("/api/wishlist", wishlistRouter);
 app.use("/api/orders", orderRouter);
 app.use("/api/dataImport", dataImportRouter);
+app.use("/api/ai", aiRouter);
 app.use("/api/*splat", errorController);
 
 app.use(errorHandler);

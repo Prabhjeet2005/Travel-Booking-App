@@ -27,6 +27,7 @@ import { getFilteredHotelCancellable } from "../../utlis/FilterHotelByCancellabl
 import { WishlistContext } from "../../context/WishlistContext";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router";
+import { AiSearchBar } from "../../Components/AiSearchBar/AiSearchBar";
 
 export const Home = () => {
 	const [hotels, setHotels] = useState([]);
@@ -123,14 +124,23 @@ export const Home = () => {
 		<>
 			<NavBar />
 			<Categories />
+			<section className="ai-search-bar">
+				<AiSearchBar />
+			</section>
+
+			<AiChatWidget />
 
 			<section onClick={handleFilterClick} className="filter-label-icon">
 				<Funnel />
 			</section>
-			<section onClick={handleWishlistIconClick} className="heart-label-icon">
+			<section
+				onClick={handleWishlistIconClick}
+				className="heart-label-icon">
 				<Heart />
 			</section>
-			<section onClick={handleSeeOrdersIconClick} className="bus-label-icon">
+			<section
+				onClick={handleSeeOrdersIconClick}
+				className="bus-label-icon">
 				<ClipboardCheck />
 			</section>
 			{isFilterWindowOpen && <Filters />}
