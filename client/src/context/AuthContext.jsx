@@ -5,15 +5,19 @@ const initialValue = {
 	name: { value: "", isValid: false },
 	email: { value: "", isValid: false },
 	phone: { value: null, isValid: false },
-	password: { value: "",isValid:false,allValidate: {
-    hasLowerCase:false,
-    hasUpperCase:false,
-    hasDigits:false,
-    hasSpecialChar:false,
-    hasMinLength:false
-  } },
-  isUserLoggedIn:false,
-  accessToken:"",
+	password: {
+		value: "",
+		isValid: false,
+		allValidate: {
+			hasLowerCase: false,
+			hasUpperCase: false,
+			hasDigits: false,
+			hasSpecialChar: false,
+			hasMinLength: false,
+		},
+	},
+	isUserLoggedIn: localStorage.getItem("isUserLoggedIn") === "true",
+	accessToken: localStorage.getItem("accessToken") || "",
 };
 export const AuthContext = createContext();
 

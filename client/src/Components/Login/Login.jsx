@@ -45,13 +45,16 @@ const Login = () => {
 				const payload = { email: email.value, password: password.value };
 				const loginRequest = await makeRequest(payload);
 				if (loginRequest) {
+					// ✅ Lock the session into browser storage!
+					localStorage.setItem("isUserLoggedIn", "true");
+
 					authDispatch({
 						type: "CLEAR_INPUT",
 					});
 					authDispatch({
-						type:"LOGGED_IN",
-						payload:true
-					})
+						type: "LOGGED_IN",
+						payload: true,
+					});
 					navigate("/");
 				}
 			})();
@@ -65,18 +68,20 @@ const Login = () => {
 		const testCredentials = {email:"test@gmail.com",password:"Qwerty@123"}
 		try{
 		(async () => {
-				const loginRequest = await makeRequest(testCredentials);
-				if (loginRequest) {
-					authDispatch({
-						type: "CLEAR_INPUT",
-					});
-					authDispatch({
-						type:"LOGGED_IN",
-						payload:true
-					})
-					navigate("/");
-				}
-			})();
+			const loginRequest = await makeRequest(testCredentials);
+			if (loginRequest) {
+				localStorage.setItem("isUserLoggedIn", "true");
+
+				authDispatch({
+					type: "CLEAR_INPUT",
+				});
+				authDispatch({
+					type: "LOGGED_IN",
+					payload: true,
+				});
+				navigate("/");
+			}
+		})();
 		} catch (error) {
 			console.log(error);
 		}

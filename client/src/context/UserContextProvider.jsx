@@ -1,4 +1,5 @@
 import React, { createContext, useState } from "react";
+import { useEffect } from "react";
 
 export const UserContext = createContext({
 	userData: null,
@@ -12,10 +13,19 @@ export const UserContext = createContext({
 });
 
 const UserContextProvider = ({ children }) => {
-	const [userData, setUserData] = useState(null);
+	const [userData, setUserData] = useState(() => {
+		const savedUser = localStorage.getItem("userData");
+		return savedUser ? JSON.parse(savedUser) : null;
+	});
 	const [message, setMessage] = useState(null);
 	const [success, setSuccess] = useState(null);
 	const [isLoading, setIsLoading] = useState(null);
+
+	useEffect(() => {
+		if (userData) {
+			localStorage.setItem("userData", JSON.stringify(userData));
+		}
+	}, [userData]);
 	return (
 		<UserContext.Provider
 			value={{

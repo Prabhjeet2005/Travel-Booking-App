@@ -60,6 +60,9 @@ export const authReducer = (state, { type, payload }) => {
       case "LOGGED_IN":
         return { ...state, isUserLoggedIn:payload};
       case "LOGOUT":
+				localStorage.removeItem("isUserLoggedIn");
+				localStorage.removeItem("accessToken");
+				localStorage.removeItem("userData");
         return { ...state,isUserLoggedIn:false}
 		default:
 			return state;
