@@ -8,7 +8,7 @@ export const filterReducer = (state, { type, payload }) => {
 				priceRange: [
 					Math.min(
 						payload.newValue[0],
-						payload.priceRange[1] - payload.minDifference
+						payload.priceRange[1] - payload.minDifference,
 					),
 					payload.priceRange[1],
 				],
@@ -20,7 +20,7 @@ export const filterReducer = (state, { type, payload }) => {
 					payload.priceRange[0],
 					Math.max(
 						payload.newValue[1],
-						payload.priceRange[0] + payload.minDifference
+						payload.priceRange[0] + payload.minDifference,
 					),
 				],
 			};
@@ -47,6 +47,9 @@ export const filterReducer = (state, { type, payload }) => {
 				rating: "1+",
 				isCancelable: true,
 			};
+		// ✅ FIX: Added a direct setter for the AI to use
+		case "SET_PRICE_RANGE":
+			return { ...state, priceRange: payload };
 		default:
 			return state;
 	}

@@ -124,11 +124,9 @@ export const Home = () => {
 		<>
 			<NavBar />
 			<Categories />
-			<section className="ai-search-bar">
+			<section className="fixed min-w-[50%] z-10 bottom-1 left-0 right-0 x-translate-middle ">
 				<AiSearchBar />
 			</section>
-
-			<AiChatWidget />
 
 			<section onClick={handleFilterClick} className="filter-label-icon">
 				<Funnel />
