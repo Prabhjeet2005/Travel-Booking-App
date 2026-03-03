@@ -35,7 +35,7 @@ const SingleHotelPage = () => {
 		setIsGenerating(true);
 		try {
 			const res = await axios.post(
-				`${process.env.REACT_APP_SERVER_URL}api/ai/itinerary`,
+				`${process.env.REACT_APP_SERVER_URL}ai/itinerary`,
 				{
 					hotelName: name,
 					city: city,

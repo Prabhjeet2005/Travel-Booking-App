@@ -1,169 +1,97 @@
-.background {
-	height: 100vh;
+.auth-background {
+	min-height: 100vh;
 	width: 100vw;
 	display: flex;
-	/* align-items: center; */
-	justify-content: center;
-	position: fixed;
-	top: 20vh;
-}
-.login-container {
-	height: fit-content;
-	width: 95vw !important;
-	/* background-color: aquamarine; */
-	display: flex;
-	flex-direction: column;
-	padding: 100px 70px;
-	padding-bottom: 30px;
-	box-sizing: border-box;
-	box-shadow: 0px 0px 20px 20px #00000052;
-	border-radius: 24px;
-	justify-content: space-between;
-	background-color: white;
-}
-
-.circle {
-	width: 100vw;
-	height: 100vh;
-	position: fixed;
-	background-color: orange;
-	top: 0;
-	left: -60%;
-	border-radius: 50%;
-	z-index: -5;
-}
-
-.login-title {
-	position: absolute;
-	background-color: orange;
-	font-weight: 200;
-	font-size: xx-large;
-	border-radius: 18%;
-	/* width: 20%; */
-	border-top-left-radius: 0%;
-	border-top-right-radius: 0%;
-	padding: 4px 20px;
-	color: white;
-}
-@media (min-width: 900px) {
-	.login-container {
-		width: 48vw !important;
-	}
-}
-
-.form-body {
-	display: flex;
-	flex-direction: column;
-	gap: 24px;
-}
-
-.form-item {
-	display: flex;
-	justify-content: space-between;
 	align-items: center;
-	position: relative;
+	justify-content: center;
+	background-color: #f7f7f9;
+	padding: 40px 20px;
 }
-.email {
+
+.signup-card {
+    background: white;
+	width: 100%;
+	max-width: 480px;
+	border-radius: 20px;
+	padding: 40px;
+	box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+	border: 1px solid #ebebeb;
 }
-.input-item {
-	border: 1px solid darkgray;
-	padding: 4px 8px;
-	padding-right: 30px;
-	border-radius: 4px;
-	position: relative;
-	width: 70%;
+
+/* Inherit these from Login UI concepts */
+.auth-header { text-align: center; margin-bottom: 24px; }
+.auth-logo { font-size: 1.5rem; font-weight: 800; color: orange; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 12px; cursor: pointer;}
+.auth-title { font-size: 1.8rem; font-weight: 700; color: #222222; margin: 0; }
+.auth-form { display: flex; flex-direction: column; gap: 16px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group label { font-size: 0.9rem; font-weight: 600; color: #222222; }
+.input-wrapper { position: relative; display: flex; align-items: center; }
+
+.auth-input {
+	width: 100%;
+	padding: 12px 40px 12px 16px;
+	border: 1px solid #b0b0b0;
+	border-radius: 10px;
+	font-size: 1rem;
+	color: #222222;
 	outline: none;
-	color: gray;
-	font-weight: 500;
+	transition: border-color 0.2s ease;
+}
+.auth-input:focus { border-color: #222222; box-shadow: 0 0 0 1px #222222; }
+.input-icon { position: absolute; right: 16px; color: #717171; font-size: 1.1rem; }
+
+.error-text {
+    font-size: 0.8rem;
+    color: orange;
+    font-weight: 500;
+    margin-top: 2px;
 }
 
-.input-icons {
-	position: absolute;
-	right: 8px;
-	cursor: pointer;
+/* ✅ Sleek Password Validation Box */
+.password-validation-box {
+    background-color: #f7f7f9;
+    border-radius: 12px;
+    padding: 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 8px;
+    border: 1px solid #ebebeb;
 }
 
-.form-item {
-}
-.password {
+@media (max-width: 450px) {
+    .password-validation-box { grid-template-columns: 1fr; }
 }
 
-.login-btn {
-	border: none;
-	border-radius: 8px;
-	background-color: orange;
-	padding: 8px;
+.validation-item {
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.validation-item.valid { color: #008a05; }
+.validation-item.invalid { color: #717171; }
+
+.auth-primary-btn {
+	background: linear-gradient(to right, orange 0%, orange 50%, orange 100%);
 	color: white;
-	font-size: larger;
-	font-weight: 500;
-	text-align: center;
-	transition: transform 0.3s ease;
-}
-
-.login-btn:disabled {
-	transform: scale(1) !important;
-	cursor: no-drop;
-}
-
-.login-btn:hover {
-	transform: scale(1.1);
-}
-
-.login-footer {
-	display: flex;
-	flex-direction: column;
-	gap: 8px;
-}
-
-.login-test {
-	cursor: pointer;
 	border: none;
-	border-radius: 8px;
-	background-color: white;
-	color: orange;
-	border: 1px solid orange;
-	text-align: center;
-	padding: 8px;
-	font-size: larger;
-	font-weight: 500;
-	transition: transform 0.3s ease;
-}
-.login-test:hover {
-	transform: scale(1.1);
-	color: white;
-	background-color: orange;
-}
-
-.not-registered {
-	text-align: center;
-	transition: transform 0.3s ease;
-}
-.not-registered:hover {
-	transform: scale(1.05);
+	padding: 16px;
+	border-radius: 12px;
+	font-size: 1.1rem;
+	font-weight: 700;
 	cursor: pointer;
+	transition: opacity 0.2s ease, transform 0.1s ease;
+    margin-top: 10px;
 }
 
-.invalid {
-	position: absolute;
-	font-size: smaller;
-	bottom: -60%;
-	left: 30%;
-}
-.password-requirement {
-	font-size: smaller;
-	bottom: -60%;
-	left: 30%;
-}
-.correct {
-	color: green;
-}
-.not-correct {
-	color: red;
-}
+.auth-primary-btn:hover:not(:disabled) { opacity: 0.9; }
+.auth-primary-btn:active:not(:disabled) { transform: scale(0.98); }
+.auth-primary-btn:disabled { background: #dddddd; color: #999999; cursor: not-allowed; }
 
-.password-container {
-	font-size: smaller;
-	padding-left: 30%;
-	margin-top: -16px;
-	margin-bottom: 10px;
-}
+.auth-footer-text { text-align: center; margin-top: 12px; font-size: 0.95rem; color: #717171; }
+.auth-footer-text span { color: #222222; font-weight: 600; text-decoration: underline; cursor: pointer; }
+.auth-footer-text span:hover { color: orange; }
