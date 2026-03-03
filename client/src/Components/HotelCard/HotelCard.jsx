@@ -76,39 +76,48 @@ export const HotelCard = ({ hotel }) => {
 					alt="Hotel Image"
 				/>
 			</section>
-			<section className="hotel-card-title-container">
-				<span className="hotel-card-title">
-					<span>{address}</span>
-					<section className="hotel-location">
-						<GeoAlt />
-						{state}
-					</section>
-				</span>
-				<span className="hotel-card-rating">
-					<span>
-						<Rating readonly allowFraction initialValue={rating} size={20} />
+			<div className="hotel-card-content">
+				<section className="hotel-card-title-container">
+					<span className="hotel-card-title">
+						<span>{address}</span>
+						<section className="hotel-location">
+							<GeoAlt />
+							{state}
+						</section>
 					</span>
-					<span>{rating}</span>
-				</span>
-			</section>
-			<section className="hotel-card-desc">{name}</section>
-			<section className="hotel-card-price-explore-container">
-				<section className="hotel-card-price">
-					&#8377;{price}
-					<span className="hotel-card-night">/night</span>{" "}
+					<span className="hotel-card-rating">
+						<span>
+							<Rating
+								readonly
+								allowFraction
+								initialValue={rating}
+								size={20}
+							/>
+						</span>
+						<span>{rating}</span>
+					</span>
 				</section>
-				<section onClick={handleExploreClick} className="hotel-card-explore">
-					Explore
+				<section className="hotel-card-desc">{name}</section>
+				<section className="hotel-card-price-explore-container">
+					<section className="hotel-card-price">
+						&#8377;{price}
+						<span className="hotel-card-night">/night</span>{" "}
+					</section>
+					<section
+						onClick={handleExploreClick}
+						className="hotel-card-explore">
+						Explore
+					</section>
 				</section>
-			</section>
 
-			<section
-				onClick={handleWishlistIconHotelCardClick}
-				className={`hotel-card-heart ${
-					isHotelPresentInWishlist ? "heart-select" : ""
-				}`}>
-				<HeartFill />
-			</section>
+				<section
+					onClick={handleWishlistIconHotelCardClick}
+					className={`hotel-card-heart ${
+						isHotelPresentInWishlist ? "heart-select" : ""
+					}`}>
+					<HeartFill />
+				</section>
+			</div>
 		</section>
 	);
 };

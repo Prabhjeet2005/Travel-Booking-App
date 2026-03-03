@@ -1,66 +1,199 @@
-.order-detail-container {
-	min-height: 80vh;
-	min-width: 40vw;
-	gap: 24px;
+/* =========================================
+   LEFT COLUMN: Trip Description
+   ========================================= */
+.checkout-left-container {
+	flex: 1;
+	max-width: 550px;
 	display: flex;
 	flex-direction: column;
+	gap: 24px;
+	color: #222222;
 }
-.order-detail-title {
-	font-size: xxx-large;
-	color: orange;
+
+.checkout-title {
+	font-size: 2rem;
 	font-weight: 700;
 	display: flex;
 	align-items: center;
+	gap: 12px;
+	margin-bottom: 8px;
+}
+
+.checkout-subtitle {
+	font-size: 1.4rem;
+	font-weight: 600;
+	margin-bottom: 16px;
+}
+
+.checkout-trip-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	margin-bottom: 20px;
+}
+
+.checkout-trip-info h3 {
+	font-size: 1rem;
+	font-weight: 600;
+	margin: 0 0 4px 0;
+}
+
+.checkout-trip-info p {
+	margin: 0;
+	font-size: 1rem;
+	color: #717171;
+}
+
+.checkout-divider {
+	border: none;
+	border-top: 1px solid #dddddd;
+	margin: 8px 0;
+}
+
+.checkout-security-text {
+	display: flex;
+	align-items: center;
 	gap: 8px;
-}
-.order-detail-mini-title {
-	font-size: xx-large;
-	font-weight: 400;
-}
-
-.order-detail-content-container{
- display: flex;
- flex-direction: column; 
-     margin-top: 16px;
-    gap: 8px;
-    font-size: larger;
-    font-weight: 200;
-}
-.order-detail-content {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-.order-detail-mini-title {
+	font-size: 0.95rem;
+	color: #717171;
+	margin-bottom: 16px;
 }
 
-.order-detail-confirm {
+.security-icon {
+	color: #008a05;
+}
+
+.razorpay-logo-wrapper {
+	background: #f7f7f9;
+	border: 1px solid #dddddd;
+	border-radius: 8px;
+	padding: 4px;
+	display: inline-block;
+}
+
+.razorpay-badge {
+	height: 48px;
+	object-fit: contain;
+}
+
+.checkout-terms {
+	font-size: 0.75rem;
+	color: #717171;
+	line-height: 1.5;
+}
+
+/* =========================================
+   RIGHT COLUMN: Summary Receipt Card
+   ========================================= */
+.checkout-summary-card {
+	width: 100%;
+	background: white;
+	border: 1px solid #dddddd;
+	border-radius: 16px;
+	padding: 24px;
+	box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+@media (min-width: 900px) {
+	.checkout-summary-card {
+		width: 400px;
+		position: sticky;
+		top: 120px; /* Sticks to the screen while scrolling */
+	}
+}
+
+.checkout-card-header {
+	display: flex;
+	gap: 16px;
+	margin-bottom: 20px;
+}
+
+.checkout-hotel-image {
+	width: 120px;
+	height: 100px;
+	border-radius: 8px;
+	object-fit: cover;
+}
+
+.checkout-hotel-meta {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.checkout-hotel-name {
+	font-size: 1rem;
+	font-weight: 600;
+	margin: 0 0 4px 0;
+	color: #222222;
+}
+
+.checkout-hotel-location {
+	font-size: 0.85rem;
+	color: #717171;
+	margin: 0 0 8px 0;
+}
+
+.checkout-hotel-rating {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	font-size: 0.85rem;
+	font-weight: 600;
+}
+
+.checkout-price-details {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	margin: 20px 0;
+}
+
+.price-details-title {
+	font-size: 1.2rem;
+	font-weight: 600;
+	margin: 0 0 8px 0;
+}
+
+.price-row {
+	display: flex;
+	justify-content: space-between;
+	color: #222222;
+	font-size: 1rem;
+}
+
+.underline-text {
+	text-decoration: underline;
+}
+
+.total-row {
+	font-weight: 800;
+	font-size: 1.2rem;
+}
+
+/* Premium Payment Button */
+.checkout-pay-btn {
+	width: 100%;
+	background: linear-gradient(to right, orange 0%, orange 50%, orange 100%);
+	color: white;
+	padding: 16px;
+	border: none;
+	border-radius: 8px;
+	font-size: 1.1rem;
+	font-weight: 700;
 	cursor: pointer;
-	font-weight: bold;
-	background-color: orange;
 	display: flex;
 	justify-content: center;
-	padding: 8px;
-	border-radius: 8px;
-	color: white;
-  transition: transform 0.3s ease;
-  margin-top: 20px;
+	align-items: center;
+	gap: 8px;
+	transition: opacity 0.2s ease, transform 0.1s ease;
+	margin-top: 10px;
 }
 
-.order-detail-confirm:hover{
-  transform: scale(1.1);
+.checkout-pay-btn:hover {
+	opacity: 0.9;
 }
 
-.order-detail-razorpay-title {
-	color: darkblue;
-	font-size: x-large;
-	font-style: italic;
-	font-weight: 800;
-}
-
-.hotel-image {
-	width: 50%;
-	width: 100%;
-	background-size: contain;
-
+.checkout-pay-btn:active {
+	transform: scale(0.98);
 }

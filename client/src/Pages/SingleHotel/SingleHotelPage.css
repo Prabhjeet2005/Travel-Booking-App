@@ -1,7 +1,10 @@
 .main-page-container {
-	margin-top: 80px !important;
+	margin-top: 100px !important;
 	padding-left: 32px !important;
 	padding-right: 32px !important;
+    max-width: 1200px; /* ✅ Keeps it looking tight and professional on wide monitors */
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 
 .hotel-description-container {

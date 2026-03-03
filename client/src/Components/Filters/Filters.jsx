@@ -8,52 +8,80 @@ import FilterRating from "./FilterRating/FilterRating";
 import { FilterContext } from "../../context/FilterContext";
 
 const Filters = () => {
-	const {isCancelable,isFilterWindowOpen,filterDispatch} = useContext(FilterContext)
-	const handleFilterWindowClose = ()=>{
+	const { isCancelable, filterDispatch } = useContext(FilterContext);
+
+	const handleFilterWindowClose = () => {
 		filterDispatch({
 			type: "TOGGLE_FILTER_WINDOW",
 		});
-	}
+	};
 
-	const handleChecked = ()=>{
+	const handleChecked = () => {
 		filterDispatch({
-			type:"CANCEL_TOGGLE",
-		})
-	}
+			type: "CANCEL_TOGGLE",
+		});
+	};
 
-	const handleClearAllClick = ()=>{
+	const handleClearAllClick = () => {
 		filterDispatch({
-			type:"CLEAR_ALL"
-		})
-	}
+			type: "CLEAR_ALL",
+		});
+		handleFilterWindowClose(); // Closes the modal after clearing
+	};
+
+	// ✅ NEW: Closes modal if user clicks on the blurry background outside the modal
+	const handleOverlayClick = (e) => {
+		if (e.target.classList.contains("background-blurry")) {
+			handleFilterWindowClose();
+		}
+	};
 
 	return (
-		<section className="background-blurry">
+		<section className="background-blurry" onClick={handleOverlayClick}>
 			<section className="filter-container">
-				<section className="filter-item same-row">
-					<section className="same-row heading-filter">
-						 <Funnel /> Filters
+				{/* Header */}
+				<section className="filter-item">
+					<section className="heading-filter">
+						<Funnel size={22} /> Filters
 					</section>
-					<section onClick={handleFilterWindowClose} className="cross-icons">
+					<section
+						onClick={handleFilterWindowClose}
+						className="cross-icons">
 						<XLg />
 					</section>
 				</section>
-				<section className="filter-item seperate-row">
-					<section className="heading">Price Range </section>
+
+				{/* Price Range */}
+				<section className="seperate-row mt-2">
+					<section className="heading">Price Range</section>
 					<section>
 						<FilterPriceRange />
 					</section>
 				</section>
+
 				<FilterBedBathroom />
-        <PropertyType />
-        <FilterRating />
-        <section className="heading same-row free-cancel">
-          <section className="">Free Cancellation</section>
-          <input onClick={handleChecked} checked={isCancelable} value={isCancelable} className="checkbox" type="checkbox" />
-        </section>
-        <section className="clear-apply-container" onClick={handleClearAllClick}>
-          <section className="clear-all">Clear Filters</section>
-        </section>
+				<PropertyType />
+				<FilterRating />
+
+				{/* Free Cancellation Checkbox */}
+				<section className="seperate-row">
+					<section className="free-cancel">
+						<section className="heading mb-0">Free Cancellation</section>
+						<input
+							onChange={handleChecked}
+							checked={isCancelable}
+							className="checkbox"
+							type="checkbox"
+						/>
+					</section>
+				</section>
+
+				{/* Footer Clear Button */}
+				<section className="clear-apply-container">
+					<button onClick={handleClearAllClick} className="clear-all">
+						Clear all
+					</button>
+				</section>
 			</section>
 		</section>
 	);

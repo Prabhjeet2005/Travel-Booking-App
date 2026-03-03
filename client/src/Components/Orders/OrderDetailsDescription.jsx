@@ -1,82 +1,71 @@
 import React, { useContext, useEffect, useState } from "react";
-import BathtubIcon from "@mui/icons-material/Bathtub";
-import Hotel from "@mui/icons-material/Hotel";
-import {
-	Airplane,
-	ArrowLeftRight,
-	Calendar4Week,
-	GeoAlt,
-	HouseDoor,
-	InfoCircle,
-	Paypal,
-	People,
-	Person,
-} from "react-bootstrap-icons";
+import { Calendar4Week, ShieldLockFill } from "react-bootstrap-icons";
 import "./OrderDetails.css";
 import { DateContext } from "../../context/DateContext";
-import useApi from "../../useApi";
-import { ENDPOINTS, REQUEST_TYPES } from "../../apiUtils";
-import { useParams } from "react-router";
 
 const OrderDetailsDescription = () => {
 	const { checkInDate, checkOutDate, guests } = useContext(DateContext);
-	const { id } = useParams();
-	const { makeRequest: getHotelDetails } = useApi(
-		`${ENDPOINTS.HOTEL.FINDID}/${id}`,
-		REQUEST_TYPES.GET
-	);
 
-	const [hotel, setHotel] = useState([]);
-	useEffect(() => {
-		try {
-			(async () => {
-				const payload = await getHotelDetails();
-				setHotel(payload);
-			})();
-		} catch (error) {
-			console.log(error);
-		}
-	}, []);
-	const { image, name, address, state, rating, price, country } = hotel;
+	// Date Formatter
+	const formatDate = (date) => {
+		if (!date) return "";
+		return date.toLocaleDateString("en-US", {
+			weekday: "short",
+			month: "short",
+			day: "numeric",
+		});
+	};
+
 	return (
-		<section className="order-detail-container">
-			<section className="order-detail-title">
-				<InfoCircle />
-				Trip Details <Airplane />
-			</section>
-			<section className="order-detail-content-container">
-				<section className="order-detail-content">
-					{" "}
-					<HouseDoor /> {name}{" "}
-				</section>
-				<section className="order-detail-content">
-					<GeoAlt /> {address},{state},{country}
-				</section>
+		<section className="checkout-left-container">
+			<div className="checkout-header">
+				<h1 className="checkout-title">Review your trip</h1>
+			</div>
 
-				<section className="order-detail-content">
-					<Calendar4Week />{" "}
-					{checkInDate &&
-						checkInDate.toLocaleDateString("en-US", {
-							day: "numeric",
-							month: "short",
-						})}{" "}
-					-{" "}
-					{checkOutDate &&
-						checkOutDate.toLocaleDateString("en-US", {
-							day: "numeric",
-							month: "short",
-						})}
-				</section>
-				<section className="order-detail-content">
-					{guests > 1 ? <People /> : <Person />}
-					{guests}
-				</section>
-			</section>
-			<section className="order-detail-mini-title">
-				<span className="order-detail-razorpay-title">
-					Razorpay <ArrowLeftRight />
-				</span>
-			</section>
+			<div className="checkout-section">
+				<div className="checkout-trip-row">
+					<div className="checkout-trip-info">
+						<h3>Dates</h3>
+						<p>
+							{formatDate(checkInDate)} – {formatDate(checkOutDate)}
+						</p>
+					</div>
+				</div>
+
+				<div className="checkout-trip-row">
+					<div className="checkout-trip-info">
+						<h3>Guests</h3>
+						<p>
+							{guests} {guests > 1 ? "guests" : "guest"}
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<hr className="checkout-divider" />
+
+			<div className="checkout-section">
+				<h2 className="checkout-subtitle">Pay with Razorpay</h2>
+				<p className="checkout-security-text">
+					<ShieldLockFill className="security-icon" />
+					Your payment is secured and encrypted by Razorpay.
+				</p>
+				<div className="razorpay-logo-wrapper">
+					<img
+						src="/images/razorpay.png"
+						alt="Razorpay Secure"
+						className="razorpay-badge"
+					/>
+				</div>
+			</div>
+
+			<hr className="checkout-divider" />
+
+			<p className="checkout-terms">
+				By selecting the button below, I agree to the Host's House Rules,
+				Ground rules for guests, and Journeaze's Rebooking and Refund
+				Policy.
+			</p>
 		</section>
 	);
 };

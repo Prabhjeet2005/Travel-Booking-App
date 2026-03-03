@@ -16,9 +16,12 @@ const FilterRating = () => {
 	return (
 		<section className="rating-container">
 			<section className="rating-title">Rating</section>
-			<section className="rating-button-container">
+			<section className="rating-button-container flex flex-col sm:flex-row gap-2">
 				{ratings.map((rate) => (
-					<section onClick={()=>handleRatingClick(rate)} className={`rating-button ${rating === rate ? "selected-rating":""}`} key={rate}>
+					<section
+						onClick={() => handleRatingClick(rate)}
+						className={`rating-button ${rating === rate ? "selected-rating" : ""}`}
+						key={rate}>
 						<StarFill className="star-icons" />
 						{rate}
 					</section>

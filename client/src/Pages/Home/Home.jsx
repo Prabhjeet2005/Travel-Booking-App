@@ -1,22 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ENDPOINTS, REQUEST_TYPES } from "../../apiUtils";
-import { UserContext } from "../../context/UserContextProvider";
 import "./Home.css";
 import axios from "axios";
 import { Categories, HotelCard, NavBar } from "../../Components/index";
 import useApi from "../../useApi";
 import { CategoryContext } from "../../context/CategoryContextProvider";
-import SearchStayWithDate from "../../Components/SearchStayWithDate/SearchStayWithDate";
-import { DateContext } from "../../context/DateContext";
-import {
-	Ban,
-	BoxSeamFill,
-	BusFront,
-	ClipboardCheck,
-	Funnel,
-	Heart,
-	HeartFill,
-} from "react-bootstrap-icons";
+import { Ban, Funnel } from "react-bootstrap-icons";
 import { FilterContext } from "../../context/FilterContext";
 import Filters from "../../Components/Filters/Filters";
 import { getHotelsByPrice } from "../../utlis/FilterHotelByPrice";
@@ -26,34 +15,27 @@ import { getFilteredHotelByRating } from "../../utlis/FilterHotelByRating";
 import { getFilteredHotelCancellable } from "../../utlis/FilterHotelByCancellable";
 import { WishlistContext } from "../../context/WishlistContext";
 import { AuthContext } from "../../context/AuthContext";
-import { useNavigate } from "react-router";
 import { AiSearchBar } from "../../Components/AiSearchBar/AiSearchBar";
 
 export const Home = () => {
 	const [hotels, setHotels] = useState([]);
-	const { hotelCategory, setHotelCategory } = useContext(CategoryContext);
-
-	const { makeRequest: hotelRequest } = useApi(
-		ENDPOINTS.HOTEL.DISPLAY,
-		REQUEST_TYPES.GET
-	);
-	const { isSearchModalOpen } = useContext(DateContext);
-
-	const { userData, isLoading, message, success } = useContext(UserContext);
+	const { hotelCategory } = useContext(CategoryContext);
 
 	useEffect(() => {
 		(async () => {
 			const hotelData = await axios.get(
-				`${process.env.REACT_APP_SERVER_URL}hotels/displayHotels?category=${hotelCategory}`
+				`${process.env.REACT_APP_SERVER_URL}hotels/displayHotels?category=${hotelCategory}`,
 			);
-			// const hotelData = await hotelRequest();
 			setHotels(hotelData.data.data || []);
 		})();
 	}, [hotelCategory]);
 
-	const { wishlist, wishlistDispatch } = useContext(WishlistContext);
+	const { wishlistDispatch } = useContext(WishlistContext);
 	const { isUserLoggedIn } = useContext(AuthContext);
-	const { makeRequest: getWishlist } = useApi(ENDPOINTS.WISHLIST.DISPLAYIDONLY);
+	const { makeRequest: getWishlist } = useApi(
+		ENDPOINTS.WISHLIST.DISPLAYIDONLY,
+	);
+
 	useEffect(() => {
 		try {
 			if (isUserLoggedIn) {
@@ -71,7 +53,7 @@ export const Home = () => {
 			console.log(error);
 		}
 	}, [isUserLoggedIn]);
-	console.log({wishlist})
+
 	const {
 		propertyType,
 		isFilterWindowOpen,
@@ -83,64 +65,51 @@ export const Home = () => {
 		isCancelable,
 		filterDispatch,
 	} = useContext(FilterContext);
-	const handleFilterClick = () => {
-		filterDispatch({
-			type: "TOGGLE_FILTER_WINDOW",
-		});
-	};
+
+	const handleFilterClick = () =>
+		filterDispatch({ type: "TOGGLE_FILTER_WINDOW" });
+
 	const filterHotelByPriceRange = getHotelsByPrice(hotels, priceRange);
 	const filterHotelByRoomsAndBeds = getHotelsByRoomsAndBeds(
 		filterHotelByPriceRange,
 		numberOfBeds,
 		numberOfBedrooms,
-		numberOfBathrooms
+		numberOfBathrooms,
 	);
 	const filterHotelByPropertyType = getFilteredPropertyType(
 		filterHotelByRoomsAndBeds,
-		propertyType
+		propertyType,
 	);
 	const filterHotelByRating = getFilteredHotelByRating(
 		filterHotelByPropertyType,
-		rating
+		rating,
 	);
 	const filterByCancellable = getFilteredHotelCancellable(
 		filterHotelByRating,
-		isCancelable
+		isCancelable,
 	);
-
-	const navigate = useNavigate();
-	const handleWishlistIconClick = () => {
-		navigate("/wishlist");
-	};
-	const handleSeeOrdersIconClick = () => {
-		if (isUserLoggedIn) {
-			navigate("/order-summary");
-		} else {
-			navigate("/login");
-		}
-	};
 
 	return (
 		<>
 			<NavBar />
 			<Categories />
-			<section className="fixed min-w-[50%] z-10 bottom-1 left-0 right-0 x-translate-middle ">
+
+			<section className="fixed min-w-[50%] z-10 bottom-1 left-0 right-0 x-translate-middle">
 				<AiSearchBar />
 			</section>
 
-			<section onClick={handleFilterClick} className="filter-label-icon">
-				<Funnel />
-			</section>
-			<section
-				onClick={handleWishlistIconClick}
-				className="heart-label-icon">
-				<Heart />
-			</section>
-			<section
-				onClick={handleSeeOrdersIconClick}
-				className="bus-label-icon">
-				<ClipboardCheck />
-			</section>
+			{/* ✅ NEW: Industry Standard Filter Bar */}
+			<div className="home-action-bar">
+				<span className="results-count">
+					{filterByCancellable.length}{" "}
+					{filterByCancellable.length === 1 ? "property" : "properties"}{" "}
+					found
+				</span>
+				<button onClick={handleFilterClick} className="modern-filter-btn">
+					<Funnel size={16} /> Filters
+				</button>
+			</div>
+
 			{isFilterWindowOpen && <Filters />}
 
 			<section className="hotel-card-container">
@@ -150,7 +119,7 @@ export const Home = () => {
 					))
 				) : (
 					<section className="ban-icons">
-						No Hotels Found <Ban />{" "}
+						No Hotels Found <Ban />
 					</section>
 				)}
 			</section>

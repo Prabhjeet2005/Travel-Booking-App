@@ -1,229 +1,279 @@
+/* =========================================
+   1. MAIN TITLES & LAYOUT
+   ========================================= */
 .single-hotel-title {
-	font-size: xx-large;
-	font-weight: 200;
-}
-.location-pin {
-	font-size: x-large;
-}
-
-.single-hotel-img-container {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-}
-
-.single-hotel-main-img {
-	background-size: contain;
-}
-.main-img {
-	background-size: contain;
-	width: 100%;
-}
-
-.single-hotel-four-image-container {
-	display: flex;
-	flex-wrap: wrap;
-
-	background-size: contain;
-
-	height: 50vh;
-}
-
-.single-hotel-four-image {
-	background-size: contain;
-	height: 50%;
-	width: 50%;
-}
-@media (min-width: 850px) {
-	.single-hotel-img-container {
-		flex-direction: row;
-	}
-	/* .single-hotel-four-image {
-		width: 20vw;
-		margin: 0;
-	} */
-	.main-img {
-		height: 50vh;
-		width: 50vw;
-		background-size: contain;
-	}
-	.single-hotel-main-img {
-		height: 50vh;
-	}
-}
-
-/* SingleHotelDescription */
-.single-hotel-container {
-	display: flex;
-	flex-direction: column;
-	font-size: x-large;
-	font-weight: 200;
-	width: 100%;
-}
-.hotel-card-title-container {
-	display: flex;
-	justify-content: space-between;
-	align-items: flex-start;
-	width: 100%;
-	font-size: xx-large;
-}
-
-.single-hotel-hosted {
-	color: dimgray;
-}
-
-.single-hotel-rooms {
-	font-size: large;
-	font-weight: 300;
-}
-
-.single-hotel-choose {
-	font-size: x-large;
-	color: dimgray;
-	display: flex;
-	align-items: center;
-	gap: 4px;
-	flex-direction: row-reverse;
-	justify-content: flex-end;
-}
-
-.single-hotel-ameneties-container {
-	font-size: large;
-	font-weight: 300;
-}
-
-.column-icon,
-.clipboard-icon {
-	font-size: medium;
-}
-.clipboard-icon {
-	color: red;
-}
-
-.single-hotel-amenetie-item {
-}
-
-.check-green {
-	color: rgb(32, 166, 32);
-}
-
-.single-hotel-cancellation {
-}
-
-/* SingleHotelPrice */
-
-.single-hotel-price-book-container {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	gap: 20px;
-}
-
-@media (min-width: 850px) {
-	.single-hotel-price-book-container,
-	.single-hotel-container {
-		width: 40%;
-	}
-}
-.hotel-card-price {
-	font-weight: 600;
-	width: 100%;
-}
-.hotel-card-night {
-	font-weight: 300;
-	font-size: small;
-}
-.hotel-card-rating {
-	display: flex;
-	gap: 4px;
-	align-items: flex-end;
-	font-size: small;
-}
-.hotel-title-container {
-	display: flex;
-	justify-content: space-between;
-	align-items: flex-start;
-	width: 100%;
-	font-size: xx-large;
-
-	align-items: center;
-}
-
-.check-container {
-	display: flex;
-	justify-content: space-between;
-}
-
-.guest-container {
-	display: flex;
-	flex-direction: column;
-	border: 1px solid dimgray;
-	padding: 8px;
-}
-.guest-number {
+	font-size: 2rem;
+	font-weight: 700;
+	color: #222222;
+	margin-bottom: 16px;
 	display: flex;
 	align-items: center;
 	gap: 8px;
 }
-.button-reserve {
-	background-color: darkorange;
-	color: white;
-	padding: 8px;
-	font-weight: 500;
-	font-size: larger;
-	border: none;
-	border-radius: 4px;
+
+.location-pin {
+	color: #ff5a5f;
+	font-size: 1.5rem;
+}
+
+/* =========================================
+   2. AIRBNB-STYLE IMAGE GRID
+   ========================================= */
+.single-hotel-img-container {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 8px;
+	border-radius: 16px;
+	overflow: hidden;
+	margin-bottom: 48px;
+}
+
+@media (min-width: 850px) {
+	.single-hotel-img-container {
+		grid-template-columns: 1fr 1fr;
+		height: 55vh;
+		min-height: 400px;
+	}
+	.single-hotel-four-image-container {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: 1fr 1fr;
+		gap: 8px;
+		height: 100%;
+	}
+}
+
+.main-img,
+.single-hotel-four-image {
 	width: 100%;
-	transition: transform 0.3s ease;
+	height: 100%;
+	object-fit: cover; /* Forces images to fill boxes perfectly without stretching */
+	cursor: pointer;
+	transition: filter 0.3s ease;
 }
-.button-reserve:hover {
-	transform: scale(1.05);
+
+.single-hotel-main-img {
+	height: 100%;
 }
-.button-reserve:disabled {
-	transform: scale(1) !important;
-	cursor: no-drop;
+
+.main-img:hover,
+.single-hotel-four-image:hover {
+	filter: brightness(0.85); /* Premium hover effect */
+}
+
+/* =========================================
+   3. TWO-COLUMN LAYOUT (Description + Sticky Card)
+   ========================================= */
+.hotel-description-container {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+	position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+@media (min-width: 850px) {
+	.hotel-description-container {
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: flex-start; /* CRITICAL for sticky card to work */
+	}
+	.single-hotel-container {
+		width: 58%; /* Left side Description */
+	}
+	.single-hotel-price-book-container {
+		width: 35%; /* Right side Booking Card */
+		position: sticky;
+		top: 120px; /* Makes the booking card stick to screen while scrolling! */
+	}
+}
+
+/* =========================================
+   4. DESCRIPTION TYPOGRAPHY
+   ========================================= */
+.single-hotel-container {
+	display: flex;
+	flex-direction: column;
+	color: #222222;
+}
+
+.single-hotel-hosted {
+	font-size: 1.4rem;
+	font-weight: 600;
+	margin-bottom: 8px;
+}
+
+.single-hotel-rooms {
+	font-size: 1rem;
+	font-weight: 400;
+	color: #222222;
+	margin-bottom: 24px;
+}
+
+.single-hotel-container hr {
+	border-top: 1px solid #dddddd;
+	margin: 32px 0;
+	opacity: 0.5;
+}
+
+.single-hotel-choose {
+	font-size: 1.2rem;
+	font-weight: 600;
+	margin-bottom: 20px;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	flex-direction: row;
+}
+
+.single-hotel-ameneties-container {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.single-hotel-amenetie-item,
+.single-hotel-cancellation {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	font-size: 1rem;
+	font-weight: 400;
+}
+
+.check-green, .column-icon, .clipboard-icon {
+	color: #222222;
+	font-size: 1.4rem;
+}
+
+/* =========================================
+   5. FLOATING BOOKING CARD
+   ========================================= */
+.single-hotel-price-book-container {
+	background: white;
+	border: 1px solid #dddddd;
+	border-radius: 16px;
+	padding: 24px;
+	box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12); /* Deep, soft shadow */
+}
+
+.hotel-title-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	margin-bottom: 24px;
+}
+
+.hotel-card-price {
+	font-size: 1.5rem;
+	font-weight: 700;
+	color: #222222;
+}
+
+.hotel-card-night {
+	font-weight: 400;
+	font-size: 1rem;
+	color: #717171;
 }
 
 .hotel-rating {
 	display: flex;
-	gap: 4px;
 	align-items: center;
-	font-weight: 100;
-	font-size: medium;
+	gap: 4px;
+	font-weight: 600;
+	font-size: 0.9rem;
 }
 
-.hotel-rating-number {
-	font-weight: 300;
-	font-size: larger;
+/* Airbnb Style Merged Input Boxes */
+.booking-inputs-wrapper {
+	border: 1px solid #b0b0b0;
+	border-radius: 8px;
+	margin-bottom: 16px;
+	overflow: hidden;
+}
+
+.check-container {
+	display: flex;
+	border-bottom: 1px solid #b0b0b0;
+}
+
+.check-container > section {
+	flex: 1;
+	padding: 10px 12px;
+	font-size: 0.65rem;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+.check-container > section:first-child {
+	border-right: 1px solid #b0b0b0;
+}
+
+.guest-container {
+	padding: 10px 12px;
+	font-size: 0.65rem;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+.guest-number {
+	display: flex;
+	align-items: center;
+	margin-top: 4px;
+}
+
+.guest-input {
+	border: none;
+	outline: none;
+	font-size: 1rem;
+	font-weight: 400;
+	text-transform: none;
+	width: 100%;
+    padding-left: 8px;
+}
+
+/* Beautiful Gradient Button */
+.button-reserve {
+	background: orange;
+	color: white;
+	padding: 14px;
+	font-weight: 600;
+	font-size: 1.1rem;
+	border: none;
+	border-radius: 8px;
+	width: 100%;
+	transition: opacity 0.2s ease;
+	margin-bottom: 24px;
+}
+
+.button-reserve:hover {
+	opacity: 0.9;
+	cursor: pointer;
+}
+
+.button-reserve:disabled {
+	background: #dddddd;
+	color: #999999;
+	cursor: not-allowed;
 }
 
 .price-details {
 	display: flex;
 	flex-direction: column;
-	gap: 8px;
-	color: dimgray;
+	gap: 12px;
+	color: #222222;
+	font-size: 1rem;
 }
 
 .price-details-item {
 	display: flex;
 	justify-content: space-between;
 }
-.price-total {
-	border-top: 1px #69696966 solid;
-	padding-top: 4px;
-}
 
-.guest-number {
-	position: relative;
-}
-.person-icon {
-	position: absolute;
-	left: 3px;
-	top: 1px;
-}
-.guest-input {
-	padding-left: 25px;
-	outline: none;
-	border: 0.5px solid darkgray;
-	border-radius: 4px;
+.price-details-item.price-total {
+	border-top: 1px solid #dddddd;
+	padding-top: 16px;
+	font-weight: 700;
+	font-size: 1.1rem;
 }

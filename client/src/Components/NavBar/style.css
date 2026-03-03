@@ -1,121 +1,82 @@
-/* .navbars {
-  background-color: orange;
-  font-size: x-large;
-  padding: 5px 10px 5px 10px;
-  text-align: center;
-
-	.flexRowView {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-	}
-	.outer {
-		display: flex;
-		justify-content: space-between;
-    align-content: center;
-		text-align: center;
-	}
-  .searches{
-    gap: 5px;
-    display: flex;
-    align-content: center;
-    border: 1.5px solid black;
-    padding: 0px 4px 0px 4px;
-    border-radius: 4px;
-  }
-  .searches:hover{
-    cursor: pointer;
-  }
-  .rightBlack{
-    border-right:1px solid black !important;
-    padding-right: 1px;
-  }
-  .profile-options{
-    display: flex;
-    justify-content: space-between;
-    font-size: x-large;
-  }
-  .search-icon{
-    padding-left: 5px;
-    padding-right: 5px;
-  }
-} */
+.NavbarColor {
+	background: rgba(255, 255, 255, 0.95) !important; /* Clean white with slight transparency */
+	backdrop-filter: blur(10px); /* Modern frosted glass effect */
+	border-bottom: 1px solid #ebebeb;
+	box-shadow: 0 2px 15px rgba(0,0,0,0.05); /* Very soft shadow */
+}
 
 .navbar-heading {
-	font-weight: 900 !important;
-	font-size: x-large !important;
-	color: white !important;
-	padding-left: 30px;
+	font-weight: 800 !important;
+	font-size: 1.5rem !important;
+	color: orange !important; /* Airbnb-style soft red/orange brand color */
+	padding-left: 20px;
 	display: flex;
 	align-items: center;
-	gap: 4px;
+	gap: 8px;
 	cursor: pointer;
 }
-.airplane {
-	font-size: smaller;
-}
 
-.NavbarColor {
-	background: orange !important;
-	color: black !important;
-	border: none;
-}
-.findButton {
-	display: flex;
-	align-items: center;
-}
-.icon {
-	font-size: xx-large;
-}
-.position {
-	position: fixed;
-}
 .button-container {
-	margin-right: 80px !important;
-	border: none !important;
+    background: white;
+	border: 1px solid #dddddd !important;
+    border-radius: 40px !important; /* Makes it a beautiful rounded pill */
+    box-shadow: 0 1px 2px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.05);
 	cursor: pointer;
-	transition: transform 0.3s ease;
+	transition: box-shadow 0.2s ease;
 	display: flex !important;
 	align-items: center !important;
+    overflow: hidden;
+		margin-right: 2em;
 }
+
 .button-container:hover {
-	transform: scale(1.05);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.18);
 }
+
 .button-item {
-	background-color: white !important;
-	color: black !important;
+	background-color: transparent !important;
+	color: #222222 !important;
 	border: none !important;
-	font-size: larger !important;
-	padding: 0px 12px 2px 12px !important;
+    border-right: 1px solid #dddddd !important; /* Dividers between buttons */
+	font-size: 0.9rem !important;
+    font-weight: 500 !important;
+	padding: 10px 20px !important;
 	display: flex !important;
 	align-items: center !important;
-	gap: 4px !important;
+	gap: 8px !important;
 }
 
-.searchBar:focus {
-	outline: none;
-	box-shadow: none !important;
-	border: none !important;
+.button-item:last-child {
+    border-right: none !important;
 }
 
-.navbar-space {
-	min-width: 50%;
-}
-
-.color-white {
-	color: white;
-	font-weight: 500;
-}
-
+/* Fix Logout to look less aggressive */
 .logout-btn {
 	display: flex !important;
 	align-items: center !important;
-	gap: 4px !important;
-	background-color: red !important;
-	border-radius: 8px !important;
-	color: white !important;
-	transition: transform 0.3s ease !important;
+	gap: 6px !important;
+	color: #717171 !important;
+    font-weight: 500;
+	transition: color 0.2s ease !important;
 }
 .logout-btn:hover {
-	transform: scale(1.05);
+	color: #222222 !important;
+}
+
+/* Add to bottom of file */
+.nav-action-link {
+	display: flex !important;
+	align-items: center !important;
+	gap: 6px !important;
+	color: #717171 !important;
+    font-weight: 600 !important;
+	transition: color 0.2s ease !important;
+	margin-right: 16px;
+    cursor: pointer;
+}
+.nav-action-link:hover {
+	color: #222222 !important;
+}
+.nav-icon {
+	font-size: 1.1rem;
 }

@@ -1,32 +1,29 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./OrderDetails.css";
-import { useLocation, useNavigate, useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import useApi from "../../useApi";
 import { ENDPOINTS, REQUEST_TYPES } from "../../apiUtils";
-import { GeoAlt } from "react-bootstrap-icons";
 import { Rating } from "react-simple-star-rating";
-import DateSelect from "../DateSelect/DateSelect";
 import { DateContext } from "../../context/DateContext";
 import { v4 as uuid } from "uuid";
 import { HotelContext } from "../../context/HotelContext";
 import { AuthContext } from "../../context/AuthContext";
+import { LockFill } from "react-bootstrap-icons";
 
 const OrderDetailsHotel = () => {
 	const { id } = useParams();
-
 	const { hotels, setHotels } = useContext(HotelContext);
-
 	const { makeRequest: getHotelDetails } = useApi(
 		`${ENDPOINTS.HOTEL.FINDID}/${id}`,
-		REQUEST_TYPES.GET
+		REQUEST_TYPES.GET,
 	);
-
 	const { makeRequest: addHotelOrder } = useApi(
 		ENDPOINTS.ORDERS.ADD,
-		REQUEST_TYPES.POST
+		REQUEST_TYPES.POST,
 	);
 
 	const [singleHotel, setSingleHotel] = useState({});
+
 	useEffect(() => {
 		try {
 			(async () => {
@@ -37,14 +34,18 @@ const OrderDetailsHotel = () => {
 			console.log(error);
 		}
 	}, []);
+
 	const { image, name, address, state, rating, price } = singleHotel;
 	const { checkInDate, checkOutDate } = useContext(DateContext);
 	const { isUserLoggedIn } = useContext(AuthContext);
-	const numberOfNights =
-		(checkOutDate.getTime() - checkInDate.getTime()) / (1000 * 60 * 60 * 24);
-
-	const totalPayableAmount = price * numberOfNights + 200;
 	const navigate = useNavigate();
+
+	const numberOfNights =
+		checkInDate && checkOutDate
+			? (checkOutDate.getTime() - checkInDate.getTime()) /
+				(1000 * 60 * 60 * 24)
+			: 0;
+	const totalPayableAmount = price * numberOfNights + 200;
 
 	const loadScript = (source) => {
 		return new Promise((resolve) => {
@@ -57,27 +58,23 @@ const OrderDetailsHotel = () => {
 	};
 
 	const handleConfirmBookingClick = async () => {
-		if(!isUserLoggedIn){
+		if (!isUserLoggedIn) {
 			navigate("/login");
 			return;
 		}
 		const response = await loadScript(
-			"https://checkout.razorpay.com/v1/checkout.js"
+			"https://checkout.razorpay.com/v1/checkout.js",
 		);
-		if (!response) {
-			console.log({ message: "Razorpay SDK failed to load" });
-		}
+		if (!response) console.log({ message: "Razorpay SDK failed to load" });
 
 		const options = {
 			key: process.env.REACT_APP_KEY,
 			amount: totalPayableAmount * 100,
 			currency: "INR",
 			name: "Journeaze",
-			email: process.env.REACT_APP_EMAIL,
-			contact: process.env.REACT_APP_CONTACT,
-			description: "Thank you for booking with us",
-
+			description: "Secure Hotel Booking",
 			handler: ({ payment_id }) => {
+				// Update Context
 				setHotels({
 					...hotels,
 					orderId: uuid(),
@@ -95,9 +92,10 @@ const OrderDetailsHotel = () => {
 					address,
 					state,
 				});
-				const orderId = uuid();
+
+				// Update DB
 				const payload = {
-					orderId,
+					orderId: uuid(),
 					checkInDate,
 					checkOutDate,
 					totalPayableAmount,
@@ -109,76 +107,71 @@ const OrderDetailsHotel = () => {
 				try {
 					(async () => {
 						const isHotelAdded = await addHotelOrder(payload);
-						if (isHotelAdded) {
-							navigate("/order-summary");
-						}
+						if (isHotelAdded) navigate("/order-summary");
 					})();
 				} catch (error) {
 					console.log(error);
 				}
 			},
-			prefill: {
-				name: process.env.REACT_APP_NAME,
-				email: process.env.REACT_APP_EMAIL,
-				contact: process.env.REACT_APP_CONTACT,
-			},
 		};
-
 		const paymentObject = new window.Razorpay(options);
 		paymentObject.open();
 	};
-	return (
-		<section className="single-hotel-price-book-container">
-			<section>
-				<img className="hotel-image" src={image} alt="Hotel Image" />
-			</section>
-			<section className="hotel-title-container">
-				<section className="hotel-card-price">
-					&#8377;{price}
-					<span className="hotel-card-night">/night</span>{" "}
-				</section>
-				<section>
-					<span className="hotel-rating">
-						<span>
-							<Rating readonly allowFraction initialValue={rating} size={26} />
-						</span>
-						{rating && (
-							<span className="hotel-rating-number">{rating.toFixed(1)}</span>
-						)}
-					</span>
-				</section>
-			</section>
 
-			<section className="price-details">
-				<section className="price-details-item">
-					{price && (
-						<>
-							<section>
-								&#8377;{price} x {numberOfNights}{" "}
-								{numberOfNights > 1 ? "nights" : "night"}
-							</section>
-							<section>&#8377;{(price * numberOfNights).toFixed(2)}</section>
-						</>
-					)}
-				</section>
-				<section className="price-details-item">
-					<section>Service Fee</section>
-					<section>&#8377;200</section>
-				</section>
-				<section className="price-details-item price-total">
-					<section>Total</section>
-					{price && (
-						<section>
-							&#8377;{(price * numberOfNights + 200).toFixed(2)}
-						</section>
-					)}
-				</section>
-			</section>
-			<section
+	return (
+		<section className="checkout-summary-card">
+			{/* Top Hotel Info */}
+			<div className="checkout-card-header">
+				<img className="checkout-hotel-image" src={image} alt="Hotel" />
+				<div className="checkout-hotel-meta">
+					<p className="checkout-hotel-name">{name}</p>
+					<p className="checkout-hotel-location">
+						{address}, {state}
+					</p>
+					<div className="checkout-hotel-rating">
+						<Rating
+							readonly
+							allowFraction
+							initialValue={rating || 0}
+							size={14}
+						/>
+						<span className="rating-number">{rating?.toFixed(1)}</span>
+					</div>
+				</div>
+			</div>
+
+			<hr className="checkout-divider" />
+
+			{/* Price Breakdown */}
+			<div className="checkout-price-details">
+				<h3 className="price-details-title">Price details</h3>
+
+				<div className="price-row">
+					<span>
+						&#8377;{price} x {numberOfNights}{" "}
+						{numberOfNights > 1 ? "nights" : "night"}
+					</span>
+					<span>&#8377;{(price * numberOfNights).toFixed(2)}</span>
+				</div>
+
+				<div className="price-row">
+					<span className="underline-text">Service Fee</span>
+					<span>&#8377;200.00</span>
+				</div>
+
+				<hr className="checkout-divider" />
+
+				<div className="price-row total-row">
+					<span>Total (INR)</span>
+					<span>&#8377;{totalPayableAmount.toFixed(2)}</span>
+				</div>
+			</div>
+
+			<button
 				onClick={handleConfirmBookingClick}
-				className="order-detail-confirm">
-				Confirm Booking
-			</section>
+				className="checkout-pay-btn">
+				<LockFill size={18} /> Confirm & Pay
+			</button>
 		</section>
 	);
 };

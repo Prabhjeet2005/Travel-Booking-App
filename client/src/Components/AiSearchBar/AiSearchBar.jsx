@@ -24,7 +24,7 @@ export const AiSearchBar = () => {
 		setStatusMessage("✨ AI is analyzing your request...");
 
 		try {
-			const res = await axios.post("http://localhost:3500/api/ai/search", {
+			const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}api/ai/search`, {
 				query,
 			});
 			const filters = res.data;

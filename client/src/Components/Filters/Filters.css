@@ -1,99 +1,142 @@
+/* 1. The Overlay (Centers the Modal) */
 .background-blurry {
-	width: 100%;
-	height: 100%;
-	backdrop-filter: blur(2px);
-	position: fixed;
-	z-index: 7;
-}
-.filter-container {
-	position: fixed;
-	top: 38px;
-	left: 119px;
-	padding: 30px;
-	box-sizing: border-box;
-	box-shadow: 0px 0px 10px 17px rgba(211, 211, 211, 1);
-	min-width: 80%;
-	display: flex;
-	flex-direction: column;
-	gap: 20px;
-	border-radius: 8px;
-	min-height: 50%;
-	background-color: white;
-	overflow-y: scroll;
-}
-.filter-item {
-	display: flex;
-	justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4); /* Soft dark overlay */
+    backdrop-filter: blur(4px);
+    z-index: 999; /* Ensure it stays above EVERYTHING */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* This centers the modal perfectly! */
 }
 
-.same-row {
-	display: flex;
-	align-items: center;
+/* 2. The Modal Itself */
+.filter-container {
+    width: 100%;
+    max-width: 700px; /* Limits width on big screens */
+    max-height: 85vh; /* Prevents it from going off-screen vertically */
+    background-color: white;
+    border-radius: 16px;
+    padding: 24px 32px;
+    box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    overflow-y: auto; /* Smooth scrolling inside the modal */
+    position: relative;
+    animation: modalFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.seperate-row {
-	display: flex;
-	flex-direction: column;
-	gap: 8px;
+
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
-.heading {
-	font-size: x-large;
-	color: dimgray;
-	font-weight: 200;
+
+/* 3. Header Styling */
+.filter-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ebebeb;
+    padding-bottom: 16px;
 }
+
 .heading-filter {
-	font-size: xx-large;
-	color: dimgray;
-	font-weight: 200;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #222222;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .cross-icons {
-	cursor: pointer;
-	font-size: x-large;
-	transition: transform 0.3s ease;
-}
-.cross-icons:hover {
-	transform: scale(1.1);
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #222222;
+    padding: 8px;
+    border-radius: 50%;
+    background-color: #f7f7f9;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+.cross-icons:hover {
+    background-color: #ebebeb;
+    transform: scale(1.05);
+}
+
+/* 4. Section Typography */
+.heading {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #222222;
+    margin-bottom: 12px;
+}
+
+.seperate-row {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #ebebeb;
+}
+
+/* 5. Free Cancellation Checkbox */
 .free-cancel {
-	display: flex;
-	gap: 16px;
-	align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .checkbox {
-	transform: scale(1.5);
-	cursor: pointer;
-}
-.checkbox:checked {
-	background-color: orange;
-	accent-color: orange;
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    accent-color: #222222; /* Modern black checkbox instead of orange */
 }
 
+/* 6. Footer Button */
 .clear-apply-container {
-	display: flex;
-	justify-content: center;
-	font-size: x-large;
-	font-weight: 500;
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 8px;
 }
+
 .clear-all {
-	color: white;
-	background-color: red;
-	padding: 4px 8px;
-	border-radius: 4px;
+    color: #222222;
+    background-color: transparent;
+    text-decoration: underline;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
 }
-.apply-changes {
-	color: white;
-	background-color: darkorange;
-	padding: 4px 8px;
-	border-radius: 4px;
+
+.clear-all:hover {
+    background-color: #f7f7f9;
 }
-.clear-all,
-.apply-changes {
-	cursor: pointer;
-	transition: transform 0.3s ease;
-}
-.clear-all:hover,
-.apply-changes:hover {
-	transform: scale(1.1);
+
+/* Scrollbar styling for the modal */
+.filter-container::-webkit-scrollbar { width: 8px; }
+.filter-container::-webkit-scrollbar-track { background: transparent; }
+.filter-container::-webkit-scrollbar-thumb { background: #dddddd; border-radius: 10px; }
+.filter-container::-webkit-scrollbar-thumb:hover { background: #b0b0b0; }
+
+/* 7. Mobile Responsiveness */
+@media (max-width: 600px) {
+    .filter-container {
+        width: 100%;
+        height: 100vh; /* Take up full screen on mobile */
+        max-height: 100vh;
+        border-radius: 0; /* Remove rounded corners on full screen */
+        padding: 20px;
+    }
 }

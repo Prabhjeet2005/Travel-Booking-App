@@ -15,9 +15,14 @@ const PropertyType = () => {
 	return (
 		<section className="property-outer-container">
 			<section className="property-title">Property Type</section>
-			<section className="property-container">
+			<section className="property-container flex flex-col sm:flex-row gap-2">
 				{propType.map((type) => (
-					<section onClick={()=>handlePropertyTypeClick(type)} className={`property-button ${propertyType === type ? "selected":""}`} key={type}>{type}</section>
+					<section
+						onClick={() => handlePropertyTypeClick(type)}
+						className={`property-button ${propertyType === type ? "selected" : ""}`}
+						key={type}>
+						{type}
+					</section>
 				))}
 			</section>
 		</section>
