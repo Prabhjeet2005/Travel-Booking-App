@@ -27,7 +27,15 @@ const SingleHotelImage = ({ singleHotel }) => {
 			<section className="single-hotel-img-container">
 				<section className="single-hotel-main-img">
 					{mainImg && (
-						<img src={mainImg} className="main-img" alt="Main Image" />
+						<img
+							src={mainImg}
+							className="main-img"
+							alt="Main Image"
+							onError={(e) => {
+								e.currentTarget.onerror = null;
+								e.currentTarget.src = "/images/download.jpeg";
+							}}
+						/>
 					)}
 				</section>
 				<section className="single-hotel-four-image-container">

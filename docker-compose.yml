@@ -1,0 +1,15 @@
+# docker-compose.yml
+services:
+  backend:
+    build: ./server
+    ports:
+      - "3500:3500"
+    env_file:
+      - ./server/.env
+  
+  frontend:
+    build: ./client
+    ports:
+      - "3001:3000" # Maps local port 3001 to container port 3000
+    depends_on:
+      - backend

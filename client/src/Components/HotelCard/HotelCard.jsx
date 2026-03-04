@@ -74,6 +74,10 @@ export const HotelCard = ({ hotel }) => {
 					src={image}
 					loading="lazy"
 					alt="Hotel Image"
+					onError={(e) => {
+						e.currentTarget.onerror = null;
+						e.currentTarget.src = "/images/download.jpeg";
+					}}
 				/>
 			</section>
 			<div className="hotel-card-content">
