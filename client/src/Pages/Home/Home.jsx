@@ -123,6 +123,17 @@ export const Home = () => {
 					</section>
 				)}
 			</section>
+			<div
+				style={{
+					bottom: "0",
+					textAlign: "center",
+					padding: "20px",
+					fontSize: "12px",
+					color: "#666",
+				}}
+				className="">
+				Designed and Engineered by Prabhjeet Singh Sandhu
+			</div>
 		</>
 	);
 };
