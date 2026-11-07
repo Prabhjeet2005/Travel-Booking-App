@@ -47,7 +47,7 @@ const parseSearchQuery = async (
 					{ role: "system", content: systemPrompt },
 					{ role: "user", content: query },
 				],
-				model: "llama-3.1-8b-instant",
+				model: "openai/gpt-oss-20b",
 				response_format: { type: "json_object" },
 			});
 
