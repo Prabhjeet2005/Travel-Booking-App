@@ -66,7 +66,12 @@ const parseSearchQuery = async (
 	}
 };
 
-const generateItinerary = async (hotelName, city, state, provider = "groq") => {
+const generateItinerary = async (
+	hotelName,
+	city,
+	state,
+	provider = "groq",
+) => {
 	const systemPrompt = `You are an elite travel concierge. Generate a highly curated 3-day travel itinerary for a guest staying at "${hotelName}" in ${city}, ${state}. 
     
     You MUST respond with ONLY a valid JSON object matching this exact schema:
@@ -87,12 +92,15 @@ const generateItinerary = async (hotelName, city, state, provider = "groq") => {
 			const completion = await groq.chat.completions.create({
 				messages: [
 					{ role: "system", content: systemPrompt },
-					{ role: "user", content: `Generate itinerary for ${hotelName} in ${city}` },
+					{
+						role: "user",
+						content: `Generate itinerary for ${hotelName} in ${city}`,
+					},
 				],
-				model: "llama-3.1-8b-instant",
-				response_format: { type: "json_object" }, 
+				model: "openai/gpt-oss-20b",
+				response_format: { type: "json_object" },
 			});
-            
+
 			return JSON.parse(completion.choices[0].message.content);
 		} catch (error) {
 			console.error("Groq Itinerary Error:", error);
